@@ -1,6 +1,16 @@
-body {
+html, body, .content {
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    min-height: 100%;
+    height: auto;
+    position: relative;
+    padding-bottom: 80px;
 }
 
 .jester-heading {
@@ -67,7 +77,6 @@ body {
     padding-right: 40px;
     padding-left: 40px;
     padding-top: 10px;
-    padding-bottom: 10px;
     /* Margins */
     margin-top: 20px;
     margin-right: auto;
@@ -80,23 +89,15 @@ body {
     box-shadow: 0px 9px 0px rgba(42, 84, 124, 1), 0px 9px 25px rgba(0,0,0,.7);
 }
 
-.jester-in-the-news {
-    font-size: 20px;
-    padding-right: 40px;
-    padding-left: 40px;
-    text-align: center;
-}
-
 .jester-footer {
-    position: absolute;
-    bottom: 0;
+    clear: both;
+    position: relative;
+    height: 80px;
     width: 100%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 10px;
     text-align: center;
-    /* Margins */
-    margin-top: 60px;
+    margin-top: -80px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .jester-image {
@@ -112,8 +113,8 @@ body {
 .jester-info-heading {
     font-size: 20px;
     text-align: center;
-    margin-top: 20px;
     font-weight: 400;
+    padding-top: 30px;
 }
 
 .jester-info-body {
@@ -127,5 +128,6 @@ body {
 .learn-more {
     font-weight: 500;
     font-size: 19px;
-    margin-top: 30px;
+    padding-top: 30px;
+    line-height: inherit;
 }
