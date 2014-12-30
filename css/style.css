@@ -55,13 +55,12 @@ body {
 }
 
 .jester-button-subcontainer {
-    height: 60px;
+    height: 100px;
 }
 
 .jester-button {
     width: 250px;
     /* Border */
-    border: gray solid 1px;
     border-radius: 4px;
     font-size: 18px;
     /* Padding */
@@ -73,4 +72,7 @@ body {
     margin-top: 15px;
     margin-right: auto;
     margin-left: auto;
+    /* Background */
+    background: rgba(42, 84, 124, 0.90);
+    color: #ffffff;
 }
