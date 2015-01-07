@@ -16,10 +16,12 @@ html, body, .content {
 
 .jester-heading {
     text-align: center;
-    font-size: 80px;
+    font-size: 100px;
     /* Padding */
     padding-top: 25px;
     padding-bottom: 10px;
+    font-family: 'Chewy';
+    color: rgb(145,141,159);
 }
 
 .jester-subheading {
@@ -183,10 +185,25 @@ html, body, .content {
     margin-top: 50px;
 }
 
-.navbar {
+.navbar, .navbar-default {
     border: none;
     background: rgba(242, 99, 99, 0.9);
-    color: #ffffff;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 9px 0px rgb(242, 99, 99);
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 9px 0px rgb(195, 82, 82);
+}
+
+a.brand {
+    color: #ffffff !important;
+}
+
+.icon-bar {
+    background-color: #ffffff !important;
+    border: #ffffff 3px;
+}
+
+#toggle-button {
+    border: none !important;
+}
+#toggle-button:hover {
+    background: rgb(255, 179, 179);
 }
