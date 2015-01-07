@@ -3,8 +3,9 @@ html, body, .content {
     font-weight: 100;
     height: 100%;
     margin: 0;
-    padding: 3%;
+    padding: 1.5%;
     padding-top: 20px;
+    color: rgb(169,129,182);
 }
 
 .content {
@@ -16,12 +17,12 @@ html, body, .content {
 
 .jester-heading {
     text-align: center;
-    font-size: 100px;
+    font-size: 120px;
     /* Padding */
-    padding-top: 25px;
     padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     font-family: 'Chewy';
-    color: rgb(145,141,159);
 }
 
 .jester-subheading {
@@ -39,7 +40,7 @@ html, body, .content {
 
 .jester-introduction {
     /* Margins */
-    margin-top: 50px;
+    margin-top: 30px;
     /* Padding */
     padding-right: 5%;
     padding-left: 5%;
@@ -47,8 +48,8 @@ html, body, .content {
 
 .jester-introduction-heading {
     text-align: center;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .jester-introduction-body {
@@ -81,7 +82,7 @@ html, body, .content {
     padding-left: 40px;
     padding-top: 7px;
     /* Margins */
-    margin-top: 20px;
+    margin-top: 90px;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -186,10 +187,22 @@ html, body, .content {
 }
 
 .navbar, .navbar-default {
-    border: none;
-    background: rgba(242, 99, 99, 0.9);
+    border: none !important;
+    background: rgb(242, 99, 99);
     border-radius: 3px;
     -webkit-box-shadow: 0px 9px 0px rgb(195, 82, 82);
+    -moz-box-shadow: 0px 9px 0px rgb(195, 82, 82);
+    box-shadow: 0px 9px 0px rgb(195, 82, 82);
+}
+
+.active-item {
+    background: rgba(195, 82, 82, 0.69) !important;
+}
+
+.item {
+    color: white !important;
+    font-size: 18px !important;
+    text-align: center !important;
 }
 
 a.brand {
@@ -206,4 +219,40 @@ a.brand {
 }
 #toggle-button:hover {
     background: rgb(255, 179, 179);
+}
+
+#navbar-collapse {
+    border: none;
+}
+
+.jester-info {
+    color: rgb(99, 97, 109);
+}
+
+.nav-item {
+    border: none;
+    color: #ffffff;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 18px;
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+}
+
+.info {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.important {
+    margin-top: 20px;
+    border-radius: 3px;
+    color: rgb(99, 97, 109);
+    background: rgba(244, 123, 16, 0.22);
+    padding: 10px;
 }
