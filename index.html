@@ -8,7 +8,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:100,500' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -23,57 +23,63 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" id="navbar">
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" id="toggle-button" class="navbar-toggle collapsed" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                    <button type="button" id="toggle-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-            </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" class="item active-item">Home</a></li>
+                        <li><a class="item" href="#">About</a></li>
+                        <li><a class="item" href="#">Register</a></li>
+                        <li><a class="item" href="#">Login</a></li>
+                        <li><a class="item" href="#">Contact</a></li>
+                    </ul>
+                </div> <!-- /.navbar-collapse -->
+            </div> <!-- /.container-fluid -->
         </nav>
         <div class="content">
             <!-- Heading -->
             <div>
                 <p class="jester-heading">Jester 5.0</p>
-                <p class="jester-subheading">Powered by Eigentaste</p>
             </div>
             <!-- Introduction -->
             <div class="jester-introduction">
                 <p class="jester-introduction-heading">Is there truth behind all humor, or is it the other way around?</p>
             </div>
-            <!-- Buttons -->
-            <div class="jester-button-container">
-                <div class="col-md-4 jester-button-subcontainer">
-                   <a href="register.html"><div class="jester-button">Register</div></a>
+            <div class="row">
+                <div class="col-md-12 info">
+                    <p class="jester-info">
+                        Jester uses a collaborative filtering algorithm called Eigentaste 5.0
+                        to recommend jokes to you based on your ratings of previous jokes.
+                    </p>
                 </div>
-                <div class="col-md-4 jester-button-subcontainer">
-                    <a href="login.html"><div class="jester-button" href="#">Login</div></a>
-                </div>
-                <div class="col-md-4 jester-button-subcontainer">
-                    <div class="jester-button" href="#">Show Me Jokes</div>
+                <div class="col-md-12 info" style="text-align: left;">
+                    <p class="jester-info">Instructions</p>
+                    <ul class="jester-info">
+                        <li>You'll be given a set of 8 jokes to rate.</li>
+                        <li>After that, Jester will begin recommending personalized jokes.</li>
+                        <li>Rate the jokes using the rating bar.</li>
+                        <li>If you've heard a joke before, try to recall your how funny
+                            it was when you first heard it.</li>
+                    </ul>
                 </div>
             </div>
-            <!-- Body -->
-            <div class="col-md-12">
-                <p class="jester-info-heading">How it works </p>
-                <p class="jester-info-body">
-                    Jester uses a collaborative filtering algorithm called Eigentaste to recommend jokes
-                    to you based on your ratings of previous jokes. You must first rate 8 "gauge set" jokes, that
-                    allows Jester to find other users with similar tastes. Jester then recommends jokes to you based on
-                    the preferences of users similar to you.
-                </p>
-                <p class="jester-info-body learn-more">Learn more about Eigentaste and other recommender systems powered by it</p>
+            <div class="important col-md-12">
+                Note: Some jokes may be considered offensive.
+                If you are offended by mild ethnic, sexist, or religious jokes,
+                please don't continue.
             </div>
-        </div>
-        <div class="jester-footer">
-            Note: Some of the jokes in our database may be considered by some to be offensive.
-            If you are likely to be offended by mild ethnic, sexist, or
-            religious jokes, please do not continue. Thank you.
-        </div>
+            <div class="jester-button">Begin</div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
