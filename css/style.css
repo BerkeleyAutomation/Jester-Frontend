@@ -23,6 +23,7 @@ html, body, .content {
     padding-left: 0px;
     padding-right: 0px;
     font-family: 'Chewy';
+    margin-top: -30px;
 }
 
 .jester-subheading {
@@ -51,6 +52,7 @@ html, body, .content {
     font-size: 28px;
     font-weight: 700;
     word-spacing: 8px;
+    margin-top: -40px;
 }
 
 .jester-introduction-body {
