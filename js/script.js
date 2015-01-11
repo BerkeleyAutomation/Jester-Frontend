@@ -85,20 +85,10 @@ $(document).ready(function() {
     // Set Background on page load
     setNavbarDropbownBackground();
     justifyNavbar();
-
-    console.log($(window).height());
-
-
-    $('#register-modal').modal('show');
-    //positionModals();
-
-    setTextFieldCallbacks();
-
-
+    //setTextFieldCallbacks()
     // Window is resized after loading
     $(window).resize(function() {
         setNavbarDropbownBackground();
         justifyNavbar();
-        //positionModals();
     });
 });
