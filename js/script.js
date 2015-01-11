@@ -50,9 +50,6 @@ angular.module('jester', ['ngMaterial'])
     });
 
 function RegisterController($scope, $mdDialog) {
-    $scope.hide = function() {
-
-    };
     $scope.cancel = function() {
         $mdDialog.cancel();
         console.log('Register cancel');
@@ -60,16 +57,13 @@ function RegisterController($scope, $mdDialog) {
 }
 
 function LoginController($scope, $mdDialog) {
-    $scope.hide = function() {
-
-    };
     $scope.cancel = function() {
         $mdDialog.cancel();
         console.log('Login cancel');
     };
 }
 
-$(document).ready(function() {
+$(window).load(function() {
     // Set Background on page load
     setNavbarDropbownBackground();
     justifyNavbar();
