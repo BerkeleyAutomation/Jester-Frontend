@@ -31,13 +31,65 @@ function justifyNavbar() {
     }
 }
 
+function positionModals() {
+    var modal = '.modal-dialog'; // Class that defines the modal
+    var windowHeight = $(window).height(); // Get window height
+    var modalHeight = $(modal).height(); // Get modal height
+    var margin = (windowHeight - modalHeight)/2; // Equal margins for centering
+    $(modal).css('margin-top', margin);
+    $(modal).css('margin-bottom', margin);
+}
+
+function setTextFieldCallbacks() {
+    $('.text-field').focusin(function() {
+        /*
+        var defaultText = $(this).attr('defaultText');
+        $('#' + this.id + '-heading').text(defaultText); // Move text to heading
+        $(this).text(''); // Make the text in the field none
+        */
+    });
+    $('.text-field').focusout(function() {
+        /*
+        if ($(this).text() === '') {
+            var defaultText = $(this).attr('defaultText');
+            $('#' + this.id + '-heading').text(''); // Move text to heading
+            $(this).text(defaultText); // Make the text in the field none
+        }*/
+    });
+}
+
+angular.module('jester', ['ngMaterial'])
+    .controller('controller', function($scope, $mdDialog) {
+        $scope.showConfirm = function(event) {
+            var confirm = $mdDialog.confirm()
+                .title('Would you like to delete your debt?')
+                .content('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Lucky day')
+                .ok('Please do it!')
+                .cancel('Sounds like a scam')
+                .targetEvent(event);
+            $mdDialog.show(confirm);
+        }
+    });
+
 $(document).ready(function() {
     // Set Background on page load
     setNavbarDropbownBackground();
     justifyNavbar();
+
+    console.log($(window).height());
+
+
+    $('#register-modal').modal('show');
+    //positionModals();
+
+    setTextFieldCallbacks();
+
+
     // Window is resized after loading
     $(window).resize(function() {
         setNavbarDropbownBackground();
         justifyNavbar();
+        //positionModals();
     });
 });
