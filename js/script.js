@@ -19,7 +19,7 @@ function setNavbarDropbownBackground() {
  * Otherwise, Navbar items occupy the entire line in the dropdown menu
  */
 function justifyNavbar() {
-    if ($(window).width() > 768) {
+    if ($(window).width() >= 768) {
         var items = $('.item').length; // Number of Navbar items
         var navbarWidth = $('.collapse').width(); // Navbar width
         // Equal sized items. Offset by -1 for smooth resizing
