@@ -31,53 +31,41 @@ function justifyNavbar() {
     }
 }
 
-function positionModals() {
-    var modal = '.modal-dialog'; // Class that defines the modal
-    var windowHeight = $(window).height(); // Get window height
-    var modalHeight = $(modal).height(); // Get modal height
-    var margin = (windowHeight - modalHeight)/2; // Equal margins for centering
-    $(modal).css('margin-top', margin);
-    $(modal).css('margin-bottom', margin);
-}
-
-function setTextFieldCallbacks() {
-    $('.text-field').focusin(function() {
-        /*
-        var defaultText = $(this).attr('defaultText');
-        $('#' + this.id + '-heading').text(defaultText); // Move text to heading
-        $(this).text(''); // Make the text in the field none
-        */
-    });
-    $('.text-field').focusout(function() {
-        /*
-        if ($(this).text() === '') {
-            var defaultText = $(this).attr('defaultText');
-            $('#' + this.id + '-heading').text(''); // Move text to heading
-            $(this).text(defaultText); // Make the text in the field none
-        }*/
-    });
-}
-
 angular.module('jester', ['ngMaterial'])
     .controller('controller', function($scope, $mdDialog) {
-        $scope.showAdvanced = function(event) {
+        $scope.showRegister = function(event) {
             $mdDialog.show({
-                controller: DialogController,
+                controller: RegisterController,
                 templateUrl: 'register.tmpl.html',
                 targetEvent: event
             });
-        }
+        };
+        $scope.showLogin = function(event) {
+            $mdDialog.show({
+                controller: LoginController,
+                templateUrl: 'login.tmpl.html',
+                targetEvent: event
+            });
+        };
     });
 
-function DialogController($scope, $mdDialog) {
+function RegisterController($scope, $mdDialog) {
     $scope.hide = function() {
-        $mdDialog.hide();
+
     };
     $scope.cancel = function() {
         $mdDialog.cancel();
+        console.log('Register cancel');
     };
-    $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
+}
+
+function LoginController($scope, $mdDialog) {
+    $scope.hide = function() {
+
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+        console.log('Login cancel');
     };
 }
 
