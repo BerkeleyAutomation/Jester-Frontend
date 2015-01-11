@@ -60,17 +60,26 @@ function setTextFieldCallbacks() {
 
 angular.module('jester', ['ngMaterial'])
     .controller('controller', function($scope, $mdDialog) {
-        $scope.showConfirm = function(event) {
-            var confirm = $mdDialog.confirm()
-                .title('Would you like to delete your debt?')
-                .content('All of the banks have agreed to forgive you your debts.')
-                .ariaLabel('Lucky day')
-                .ok('Please do it!')
-                .cancel('Sounds like a scam')
-                .targetEvent(event);
-            $mdDialog.show(confirm);
+        $scope.showAdvanced = function(event) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'register.tmpl.html',
+                targetEvent: event
+            });
         }
     });
+
+function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+}
 
 $(document).ready(function() {
     // Set Background on page load
