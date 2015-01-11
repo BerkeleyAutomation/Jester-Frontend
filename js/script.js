@@ -6,7 +6,7 @@
  * Sets the Navbar drop-down color as dark red.
  */
 function setNavbarDropbownBackground() {
-    if ($(window).width() <= 768) {
+    if ($(window).width() < 768) {
         $('#navbar-collapse').css('background', 'rgb(195, 85, 85)');
     }
     else {
