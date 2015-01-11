@@ -63,7 +63,7 @@ function LoginController($scope, $mdDialog) {
     };
 }
 
-$(window).load(function() {
+$(document).ready(function() {
     // Set Background on page load
     setNavbarDropbownBackground();
     justifyNavbar();
