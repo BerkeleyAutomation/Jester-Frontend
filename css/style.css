@@ -86,48 +86,9 @@ body {
     font-size: 20px;
     margin: auto;
     margin-top: 30px;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     width: 250px;
-}
-
-.modal {
-    height: 100%;
-}
-.modal-content {
-    border-radius: 3px !important;
-    font-family: 'Libre Baskerville', sans-serif;
-    margin-left: 4%;
-    margin-right: 4%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.modal-heading {
-    font-size: 20px;
-    text-align: center;
-}
-
-.input {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-}
-
-.text-field {
-    border-bottom: solid 3px rgba(190, 190, 190, 0.65);
-    position: relative;
-    z-index: 20;
-}
-
-.text-field:focus {
-    outline: 0;
-}
-
-.text-field-label {
-    height: 30px;
-    padding-top: 30px;
-    z-index: 10;
 }
 
 .jester-introduction {
