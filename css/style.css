@@ -15,12 +15,16 @@ body {
 
 .item {
     color: white !important;
-    font-family: 'Roboto', sans-serif;;
-    font-weight: 100;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300 !important;
     font-size: 20px !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
     text-align: center !important;
+}
+
+.item:focus {
+    outline: 0;
 }
 
 .italic {
@@ -30,6 +34,14 @@ body {
 
 #navbar-collapse {
     border: none;
+}
+
+#toggle-button {
+    border: none !important;
+}
+
+#toggle-button:hover {
+    background: rgb(255, 179, 179);
 }
 
 #heading {
@@ -79,12 +91,43 @@ body {
     width: 250px;
 }
 
-.jester-blurb {
+.modal {
+    height: 100%;
+}
+.modal-content {
+    border-radius: 3px !important;
+    font-family: 'Libre Baskerville', sans-serif;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.modal-heading {
+    font-size: 20px;
     text-align: center;
-    /* Padding */
+}
+
+.input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.text-field {
+    border-bottom: solid 3px rgba(190, 190, 190, 0.65);
+    position: relative;
+    z-index: 20;
+}
+
+.text-field:focus {
+    outline: 0;
+}
+
+.text-field-label {
+    height: 30px;
     padding-top: 30px;
-    padding-right: 70px;
-    padding-left: 70px;
+    z-index: 10;
 }
 
 .jester-introduction {
@@ -227,14 +270,6 @@ a.brand {
 .icon-bar {
     background-color: #ffffff !important;
     border: #ffffff 3px;
-}
-
-#toggle-button {
-    border: none !important;
-}
-
-#toggle-button:hover {
-    background: rgb(255, 179, 179);
 }
 
 .jester-info {
