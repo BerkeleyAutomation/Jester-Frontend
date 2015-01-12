@@ -23,7 +23,7 @@ function justifyNavbar() {
         var items = $('.item').length; // Number of Navbar items
         var navbarWidth = $('.collapse').width(); // Navbar width
         // Equal sized items. Offset by -1 for smooth resizing
-        var itemWidth = (navbarWidth/items) - 1.0;
+        var itemWidth = (navbarWidth / items) - 1.0;
         $('.item').width(itemWidth);
     }
     else {
@@ -31,16 +31,40 @@ function justifyNavbar() {
     }
 }
 
+function RegisterController($scope, $mdDialog) {
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+        console.log('Register cancel');
+    };
+}
+
+function LoginController($scope, $mdDialog) {
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+        console.log('Login cancel');
+    };
+}
+
+$(document).ready(function () {
+    setNavbarDropbownBackground();
+    justifyNavbar();
+    // Window is resized after loading
+    $(window).resize(function () {
+        setNavbarDropbownBackground();
+        justifyNavbar();
+    });
+});
+
 angular.module('jester', ['ngMaterial'])
-    .controller('controller', function($scope, $mdDialog) {
-        $scope.showRegister = function(event) {
+    .controller('controller', function ($scope, $mdDialog) {
+        $scope.showRegister = function (event) {
             $mdDialog.show({
                 controller: RegisterController,
                 templateUrl: 'register.tmpl.html',
                 targetEvent: event
             });
         };
-        $scope.showLogin = function(event) {
+        $scope.showLogin = function (event) {
             $mdDialog.show({
                 controller: LoginController,
                 templateUrl: 'login.tmpl.html',
@@ -48,29 +72,3 @@ angular.module('jester', ['ngMaterial'])
             });
         };
     });
-
-function RegisterController($scope, $mdDialog) {
-    $scope.cancel = function() {
-        $mdDialog.cancel();
-        console.log('Register cancel');
-    };
-}
-
-function LoginController($scope, $mdDialog) {
-    $scope.cancel = function() {
-        $mdDialog.cancel();
-        console.log('Login cancel');
-    };
-}
-
-$(document).ready(function() {
-    // Set Background on page load
-    setNavbarDropbownBackground();
-    justifyNavbar();
-    //setTextFieldCallbacks()
-    // Window is resized after loading
-    $(window).resize(function() {
-        setNavbarDropbownBackground();
-        justifyNavbar();
-    });
-});
