@@ -163,8 +163,11 @@ button.cancel {
     background: rgba(195, 82, 82, 0.69) !important;
 }
 
-.icon-bar {
-    background-color: #ffffff !important;
-    border: #ffffff 3px;
+.link {
+    color: white !important;
+}
+
+a:active, a:hover, a:link, a:visited {
+    text-decoration: none;
 }
 
