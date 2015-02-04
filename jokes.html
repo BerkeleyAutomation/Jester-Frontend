@@ -29,10 +29,10 @@
     <!-- Custom style sheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-<body ng-app="jester" ng-controller="controller">
+<body ng-app="jester">
 <!-- Register Modal -->
 <!-- Navbar -->
-<nav class="navbar navbar-default" id="navbar">
+<nav class="navbar navbar-default" id="navbar" ng-controller="navbar-controller">
     <div class="container-fluid">
         <!-- Toggle Button. Only visible on mobile devices -->
         <div class="navbar-header">
@@ -58,7 +58,20 @@
     </div>
 </nav>
 <!-- Page Content -->
-<div class="content container">
+<div class="content container" ng-controller="joke-controller">
+    <div class="row text center" id="small-heading">
+        Jokes
+    </div>
+    <div class="col-md-12 joke" ng-bind-html="joke.joke_text | unsafe">></div>
+    <div class="col-md-12 slider-holder">
+        <div>
+            <span class="left-heading">Less Funny</span>
+            <span class="right-heading">More Funny</span>
+        </div>
+        <md-slider ng-model="rating" step="0.01" min="-10" max="10" aria-label="rating">
+        </md-slider>
+    </div>
+    <md-button class="md-raised md-primary" ng-click="submitRating($event)">Primary</md-button>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

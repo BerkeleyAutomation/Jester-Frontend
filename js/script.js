@@ -5,6 +5,9 @@
 /**
  * Sets the Navbar drop-down color as dark red.
  */
+
+BASE_URL = 'http://127.0.0.1:8000/jester/'
+
 function setNavbarDropbownBackground() {
     if ($(window).width() < 768) {
         $('#navbar-collapse').css('background', 'rgb(195, 85, 85)');
@@ -12,6 +15,30 @@ function setNavbarDropbownBackground() {
     else {
         $('#navbar-collapse').css('background', 'rgb(240, 100, 100)');
     }
+}
+
+/**
+ * Performs a synchronous get request, simplifying code writing.
+ * TODO: Consider using async calls
+ * @param url
+ * @returns {*}
+ */
+function get(url) {
+    var returnValue = null;
+    $.ajax({
+        url: url,
+        success: function(data) {
+            returnValue = data;
+        },
+        statusCode: {
+            500: function(xhr, text, response) {
+                console.log(xhr.responseText);
+                $("body").html(xhr.responseText);
+            }
+        },
+        async: false
+    });
+    return returnValue;
 }
 
 /**
@@ -36,6 +63,13 @@ function RegisterController($scope, $mdDialog) {
         $mdDialog.cancel();
         console.log('Register cancel');
     };
+    $scope.submit = function() {
+        if (typeof $scope.user.email != 'undefined') {
+            var c = get(BASE_URL + 'register_user/' + $scope.user.email + '/' +
+                $scope.user.password);
+            console.log(c);
+        }
+    };
 }
 
 function LoginController($scope, $mdDialog) {
@@ -55,8 +89,20 @@ $(document).ready(function () {
     });
 });
 
+function requestNewUser() {
+    return parseInt(get(BASE_URL + 'new_user'));
+}
+
+function requestJoke(user_id) {
+    return get(BASE_URL + 'request_joke/' + user_id);
+}
+
+function submitRating(user_id, joke_id, rating) {
+    return get(BASE_URL + 'rate_joke/' + user_id + '/' + joke_id + '/' + rating.toFixed(2));
+}
+
 angular.module('jester', ['ngMaterial'])
-    .controller('controller', function ($scope, $mdDialog) {
+    .controller('navbar-controller', function ($scope, $mdDialog) {
         $scope.showRegister = function (event) {
             $mdDialog.show({
                 controller: RegisterController,
@@ -71,4 +117,27 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
+    })
+    .controller('joke-controller', function($scope) {
+        // Set default rating
+        $scope.rating = 0;
+        // Request new user id
+        if (typeof $scope.user_id === 'undefined') {
+            $scope.user_id = requestNewUser();
+            console.log($scope.user_id);
+            $scope.joke = requestJoke($scope.user_id);
+            console.log($scope.joke);
+        }
+        // Submit a rating and request the next joke
+        $scope.submitRating = function (event) {
+            submitRating($scope.user_id, $scope.joke.joke_id, $scope.rating);
+            $scope.joke = requestJoke($scope.user_id);
+        };
+    })
+    // Directly inject html
+    .filter('unsafe', function($sce) {
+        return function(val) {
+            return $sce.trustAsHtml(val);
+        };
     });
+;
