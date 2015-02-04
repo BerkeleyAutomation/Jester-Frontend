@@ -25,6 +25,11 @@ body {
     outline: 0;
 }
 
+.icon-bar {
+    border-color: #ffffff;
+    background-color: #ffffff !important;
+}
+
 .italic {
     font-style: italic;
     padding-right: 3px;
@@ -159,6 +164,19 @@ button.cancel {
     display: block;
 }
 
+.md-track {
+    height: 7px !important;
+    border-radius: 6px;
+    background: -webkit-linear-gradient(left, red, blue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, red, blue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, red, blue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, red, blue); /* Standard syntax */
+}
+
+div.md-track.md-track-fill {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
 .active-item {
     background: rgba(195, 82, 82, 0.69) !important;
 }
@@ -171,3 +189,35 @@ a:active, a:hover, a:link, a:visited {
     text-decoration: none;
 }
 
+.left-heading {
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+    font-family: 'Roboto';
+}
+
+.right-heading {
+    display: inline-block;
+    width: 49%;
+    text-align: right;
+    font-family: 'Roboto';
+}
+
+.md-focus-thumb, .md-thumb {
+    background-color: #ffffff;
+}
+
+.joke {
+    margin-top: 50px;
+}
+
+.joke > p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 110% !important;
+}
+
+.slider-holder {
+    margin-top: 40px !important;
+}
