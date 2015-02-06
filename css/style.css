@@ -1,5 +1,6 @@
 body {
     padding: 10px;
+    margin-bottom: 30px;
 }
 
 .navbar {
@@ -50,7 +51,7 @@ body {
 #heading {
     color: #C9699D;
     margin-top: -25px;
-    font-size: 100px;
+    font-size: 90px;
     font-family: 'Leckerli One';
     text-align: center;
 }
