@@ -1,5 +1,5 @@
 body {
-    padding: 20px;
+    padding: 10px;
 }
 
 .navbar {
@@ -30,10 +30,6 @@ body {
     background-color: #ffffff !important;
 }
 
-.container {
-    margin-bottom: 20px;
-}
-
 .italic {
     font-style: italic;
     padding-right: 3px;
@@ -53,6 +49,7 @@ body {
 
 #heading {
     color: #C9699D;
+    margin-top: -25px;
     font-size: 100px;
     font-family: 'Leckerli One';
     text-align: center;
@@ -86,12 +83,14 @@ body {
     font-size: 15px;
     font-weight: 300;
     margin: auto;
+    margin-left: 2%;
+    margin-right: 2%;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
     text-align: center;
-    width: 90%;
+    width: 98%;
 }
 
 .button {
