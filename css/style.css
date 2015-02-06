@@ -30,6 +30,10 @@ body {
     background-color: #ffffff !important;
 }
 
+.container {
+    margin-bottom: 20px;
+}
+
 .italic {
     font-style: italic;
     padding-right: 3px;
@@ -49,14 +53,14 @@ body {
 
 #heading {
     color: #C9699D;
-    font-size: 120px;
+    font-size: 100px;
     font-family: 'Leckerli One';
     text-align: center;
 }
 
 #small-heading {
     color: #C9699D;
-    font-size: 60px;
+    font-size: 50px;
     font-family: 'Leckerli One';
     text-align: center;
 }
