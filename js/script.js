@@ -6,7 +6,7 @@
  * Sets the Navbar drop-down color as dark red.
  */
 
-BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/'
+BASE_URL = 'http://127.0.0.1:8000/jester/'
 
 function setNavbarDropbownBackground() {
     if ($(window).width() < 768) {
