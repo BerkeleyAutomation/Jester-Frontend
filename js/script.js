@@ -28,6 +28,7 @@ function get(url) {
     $.ajax({
         url: url,
         success: function(data) {
+            console.log(data);
             returnValue = data;
         },
         statusCode: {
