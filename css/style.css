@@ -225,3 +225,7 @@ a:active, a:hover, a:link, a:visited {
 .slider-holder {
     margin-top: 40px !important;
 }
+
+.md-primary {
+    margin-bottom: 25px !important;
+}
