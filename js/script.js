@@ -28,6 +28,7 @@ function get(url) {
     $.ajax({
         url: url,
         success: function(data) {
+            console.log('here');
             console.log(data);
             returnValue = data;
         },
@@ -37,7 +38,7 @@ function get(url) {
                 $("body").html(xhr.responseText);
             }
         },
-        async: false
+        crossDomain: true
     });
     return returnValue;
 }
@@ -67,7 +68,7 @@ function RegisterController($scope, $mdDialog) {
     $scope.submit = function() {
         if (typeof $scope.user.email != 'undefined') {
             var c = get(BASE_URL + 'register_user/' + $scope.user.email + '/' +
-                $scope.user.password);
+            $scope.user.password);
             console.log(c);
         }
     };
@@ -90,12 +91,11 @@ $(document).ready(function () {
     });
 });
 
-function requestNewUser() {
-    return parseInt(get(BASE_URL + 'new_user'));
-}
-
-function requestJoke(user_id) {
-    return get(BASE_URL + 'request_joke/' + user_id);
+function requestJoke($scope) {
+    $.get(BASE_URL + 'request_joke/' + $scope.user_id, function(data) {
+        $scope.joke = data;
+        $scope.$apply();
+    });
 }
 
 function submitRating(user_id, joke_id, rating) {
@@ -124,15 +124,19 @@ angular.module('jester', ['ngMaterial'])
         $scope.rating = 0;
         // Request new user id
         if (typeof $scope.user_id === 'undefined') {
-            $scope.user_id = requestNewUser();
-            console.log($scope.user_id);
-            $scope.joke = requestJoke($scope.user_id);
-            console.log($scope.joke);
+            // Get a new user id
+            $.get(BASE_URL + 'new_user', function(data) {
+                $scope.user_id = parseInt(data);
+                requestJoke($scope);
+            });
         }
         // Submit a rating and request the next joke
         $scope.submitRating = function (event) {
-            submitRating($scope.user_id, $scope.joke.joke_id, $scope.rating);
-            $scope.joke = requestJoke($scope.user_id);
+            var url = BASE_URL + 'rate_joke/' + $scope.user_id + '/' +
+                $scope.joke.joke_id + '/' + $scope.rating.toFixed(2);
+            $.get(url, function() {
+                requestJoke($scope);
+            })
         };
     })
     // Directly inject html
