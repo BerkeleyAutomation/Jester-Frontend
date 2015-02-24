@@ -18,32 +18,6 @@ function setNavbarDropbownBackground() {
 }
 
 /**
- * Performs a synchronous get request, simplifying code writing.
- * TODO: Consider using async calls
- * @param url
- * @returns {*}
- */
-function get(url) {
-    var returnValue = null;
-    $.ajax({
-        url: url,
-        success: function(data) {
-            console.log('here');
-            console.log(data);
-            returnValue = data;
-        },
-        statusCode: {
-            500: function(xhr, text, response) {
-                console.log(xhr.responseText);
-                $("body").html(xhr.responseText);
-            }
-        },
-        crossDomain: true
-    });
-    return returnValue;
-}
-
-/**
  * Equal spaces the items on the Navbar if the screen is large
  * Otherwise, Navbar items occupy the entire line in the dropdown menu
  */
@@ -92,7 +66,7 @@ $(document).ready(function () {
 });
 
 function requestJoke($scope) {
-    $.get(BASE_URL + 'request_joke/' + $scope.user_id + '/', function(data) {
+    $.get(BASE_URL + 'request_joke/', function(data) {
         $scope.joke = data;
         $scope.$apply();
     });
@@ -118,18 +92,12 @@ angular.module('jester', ['ngMaterial'])
     .controller('joke-controller', function($scope) {
         // Set default rating
         $scope.rating = 0;
-        // Request new user id
-        if (typeof $scope.user_id === 'undefined') {
-            // Get a new user id
-            $.get(BASE_URL + 'new_user/', function(data) {
-                $scope.user_id = parseInt(data);
-                requestJoke($scope);
-            });
-        }
+        // Request a new joke. This will perform authentication
+        requestJoke($scope);
         // Submit a rating and request the next joke
         $scope.submitRating = function (event) {
-            var url = BASE_URL + 'rate_joke/' + $scope.user_id + '/' +
-                $scope.joke.joke_id + '/' + $scope.rating.toFixed(2) + '/';
+            var url = BASE_URL + 'rate_joke/' + $scope.joke.joke_id +
+                '/' + $scope.rating.toFixed(2) + '/';
             $.get(url, function() {
                 requestJoke($scope);
             })
