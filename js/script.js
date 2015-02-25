@@ -6,6 +6,8 @@
 BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
+LOGOUT_URL = BASE_URL + 'logout/';
+HOME_URL = "http://berkeleyautomation.github.io/Jester-Frontend"
 
 String.prototype.format = String.prototype.f = function () {
     var s = this,
@@ -73,7 +75,18 @@ function RegisterController($scope, $mdDialog) {
 function LoginController($scope, $mdDialog) {
     $scope.cancel = function () {
         $mdDialog.cancel();
-        console.log('Login cancel');
+    };
+    $scope.submit = function () {
+        // Request the server to logout
+        var promise = $http({
+            url: LOGOUT_URL,
+            type: 'GET',
+            withCredentials: true
+        });
+        // Re-direct to the home page
+        promise.then(function() {
+            window.location.href = HOME_URL;
+        });
     };
 }
 
@@ -110,7 +123,7 @@ function requestJoke($scope, $http) {
 
 
 angular.module('jester', ['ngMaterial'])
-    .controller('navbar-controller', function ($scope, $mdDialog) {
+    .controller('navbar-controller', function ($scope, $http, $mdDialog) {
         $scope.showRegister = function (event) {
             $mdDialog.show({
                 controller: RegisterController,
@@ -118,10 +131,10 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
-        $scope.showLogin = function (event) {
+        $scope.showLogoutConfirm = function (event) {
             $mdDialog.show({
                 controller: LoginController,
-                templateUrl: 'login.tmpl.html',
+                templateUrl: 'logout.tmpl.html',
                 targetEvent: event
             });
         };
