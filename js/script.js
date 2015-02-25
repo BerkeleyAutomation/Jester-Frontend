@@ -67,12 +67,12 @@ function RegisterController($scope, $mdDialog) {
 }
 
 /**
- * Controller for the login dialog
+ * Controller for the logout dialog
  * @param $scope
  * @param $mdDialog
  * @constructor
  */
-function LoginController($scope, $mdDialog) {
+function LogoutController($scope, $http, $mdDialog) {
     $scope.cancel = function () {
         $mdDialog.cancel();
     };
@@ -133,7 +133,7 @@ angular.module('jester', ['ngMaterial'])
         };
         $scope.showLogoutConfirm = function (event) {
             $mdDialog.show({
-                controller: LoginController,
+                controller: LogoutController,
                 templateUrl: 'logout.tmpl.html',
                 targetEvent: event
             });
