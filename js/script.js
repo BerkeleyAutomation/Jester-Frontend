@@ -126,11 +126,11 @@ angular.module('jester', ['ngMaterial'])
             });
         };
     })
-    .controller('joke-controller', function ($scope) {
+    .controller('joke-controller', function ($scope, $http) {
         // Set default rating
         $scope.rating = 0;
         // Request a new joke. This will also perform authentication
-        requestJoke($scope);
+        requestJoke($scope, $http);
         // Submit a rating and request the next joke
         $scope.submitRating = function () {
             // Submit the rating
