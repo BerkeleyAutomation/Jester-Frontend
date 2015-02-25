@@ -7,7 +7,7 @@ BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
-HOME_URL = "http://berkeleyautomation.github.io/Jester-Frontend"
+HOME_URL = "http://berkeleyautomation.github.io/Jester-Frontend";
 
 String.prototype.format = String.prototype.f = function () {
     var s = this,
