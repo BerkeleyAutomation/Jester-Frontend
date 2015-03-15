@@ -19,18 +19,6 @@ String.prototype.format = String.prototype.f = function () {
 };
 
 /**
- * Set the Navbar dropdown color as dark red
- */
-function setNavbarDropbownBackground() {
-    if ($(window).width() < 768) {
-        $('#navbar-collapse').css('background', 'rgb(195, 85, 85)');
-    }
-    else {
-        $('#navbar-collapse').css('background', 'rgb(240, 100, 100)');
-    }
-}
-
-/**
  * Equal spaces the items on the Navbar if the screen is large
  * Otherwise, Navbar items occupy the entire line in the dropdown menu
  */
@@ -94,11 +82,9 @@ function LogoutController($scope, $http, $mdDialog) {
  * Run this code when the page loads
  */
 $(document).ready(function () {
-    setNavbarDropbownBackground();
     justifyNavbar();
     // Window is resized after loading
     $(window).resize(function () {
-        setNavbarDropbownBackground();
         justifyNavbar();
     });
 });

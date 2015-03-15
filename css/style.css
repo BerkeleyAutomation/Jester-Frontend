@@ -1,24 +1,59 @@
+/* http://twitter.github.com/bootstrap/scaffolding.html#responsive */
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    body {
+        font-size: 10px;
+    }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+    body {
+        font-size: 12px;
+    }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 940px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Default: 940px and up  */
+/* Large desktop */
+@media (min-width: 1210px) {
+    body {
+        font-size: 16px;
+    }
+}
+
 body {
-    padding: 10px;
-    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300 !important;
 }
 
 .navbar {
-    background: rgb(240, 100, 100);
+    background: #F03832;
     border: none !important;
-    border-radius: 3px;
-    box-shadow: 0px 9px 0px rgb(195, 85, 85);
-    -webkit-box-shadow: 0px 9px 0px rgb(195, 85, 85);
-    -moz-box-shadow: 0px 9px 0px rgb(195, 85, 85);
+    /* Prevent Navbar edges from being rounded */
+    border-radius: 0 !important;
+    /* Shadows for the Navbar */
+    box-shadow: 0 9px 0 #990F09;
+    -webkit-box-shadow: 0 9px 0 #990F09;
+    -moz-box-shadow: 0 9px 0 #990F09;
+}
+
+#navbar-collapse {
+    border: none;
 }
 
 .item {
     color: white !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: 300 !important;
-    font-size: 20px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+    font-size: 1.3em !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     text-align: center !important;
 }
 
@@ -26,88 +61,62 @@ body {
     outline: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    color: #774422;
+    font-family: 'Lobster', sans-serif !important;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 6.0em;
+}
+
+h2 {
+    font-size: 4.0em;
+}
+
 .icon-bar {
     border-color: #ffffff;
     background-color: #ffffff !important;
-}
-
-.italic {
-    font-style: italic;
-    padding-right: 3px;
-}
-
-#navbar-collapse {
-    border: none;
 }
 
 #toggle-button {
     border: none !important;
 }
 
-#toggle-button:hover {
+#toggle-button:hover, #toggle-button:focus {
     background: rgb(255, 179, 179);
 }
 
-#heading {
-    color: #C9699D;
-    margin-top: -25px;
-    font-size: 90px;
-    font-family: 'Leckerli One';
-    text-align: center;
-}
-
-#small-heading {
-    color: #C9699D;
-    font-size: 50px;
-    font-family: 'Leckerli One';
-    text-align: center;
-}
-
-.bold {
-    font-family: 'Libre Baskerville', sans-serif !important;
-    font-weight: bold !important;
-}
-
-#subheading {
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Libre Baskerville', sans-serif;
-    font-weight: 400;
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
-
 .disclaimer {
-    background: rgba(245, 125, 15, 0.15);
-    border-radius: 3px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    margin: auto;
-    margin-left: 2%;
-    margin-right: 2%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    background: rgb(255, 241, 204);
+    margin-top: 3em;
+    padding: 15px;
+    font-size: 1.3em;
     text-align: center;
-    width: 98%;
 }
 
-.button {
-    background: rgba(42, 84, 124, 0.90);
-    box-shadow: 0px 9px 0px rgba(42, 84, 124, 1);
-    -webkit-box-shadow: 0px 9px 0px rgba(42, 84, 124, 1);
-    -moz-box-shadow: 0px 9px 0px rgba(42, 84, 124, 1);
-    border-radius: 3px;
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    margin: auto;
-    margin-top: 30px;
+.positive {
+    background: #306896 !important;
+}
+
+#begin {
+    width: 100%;
     padding: 10px;
-    text-align: center;
+    margin: 1.1em auto;
+    font-size: 1.3em;
+
+    /* Button shadow for 3D effect */
+    box-shadow: 0 9px 0 #264064;
+    -webkit-box-shadow: 0 9px 0 #264064;
+    -moz-box-shadow: 0 9px 0 #264064;
+}
+
+/* Centers the Begin button */
+#begin-button-holder {
     width: 250px;
+    margin: auto;
 }
 
 .angular-modal {
@@ -134,7 +143,6 @@ button.submit {
 button {
     float: right;
     margin-left: 10px !important;
-    margin-top: 25px !important;
 }
 
 button.cancel {
@@ -182,7 +190,7 @@ div.md-track.md-track-fill {
 }
 
 .active-item {
-    background: rgba(195, 82, 82, 0.69) !important;
+    background: rgb(153, 15, 9) !important;
 }
 
 .link {
@@ -193,18 +201,11 @@ a:active, a:hover, a:link, a:visited {
     text-decoration: none;
 }
 
-.left-heading {
+.heading {
     display: inline-block;
     width: 49%;
-    text-align: left;
-    font-family: 'Roboto';
-}
-
-.right-heading {
-    display: inline-block;
-    width: 49%;
-    text-align: right;
-    font-family: 'Roboto';
+    font-family: 'Lobster', sans-serif;
+    font-size: 1.4em;
 }
 
 .md-focus-thumb, .md-thumb {
@@ -212,18 +213,29 @@ a:active, a:hover, a:link, a:visited {
 }
 
 .joke {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .joke > p {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 110% !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 1.4em;
+    line-height: 120% !important;
 }
 
 .slider-holder {
-    margin-top: 40px !important;
+    display: block;
+    max-width: 500px;
+    margin: auto !important;
+}
+
+.md-thumb, .md-focus-thumb, .md-focus-ring  {
+    margin-top: 9px;
+}
+
+div.md-track {
+    height: 20px !important;
+    border-radius: 20px;
 }
 
 .md-primary {

@@ -12,8 +12,7 @@
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Leckerli+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,9 +48,7 @@
             <ul class="nav navbar-nav">
                 <li><a class="item" href="index.html">Home</a></li>
                 <li><a class="item" href="about.html">About</a></li>
-                <li><a class="item" href="#" ng-click="showRegister($event)">Register</a></li>
-                <li><a class="item" href="#" ng-click="showLogoutConfirm($event)">Logout</a></li>
-                <li><a class="item" href="#">Contact</a></li>
+                <li><a class="item" href="#" ng-click="showRegister($event)">Join Our Mailing List</a></li>
             </ul>
         </div>
 
@@ -59,19 +56,25 @@
 </nav>
 <!-- Page Content -->
 <div class="content container" ng-controller="joke-controller">
-    <div class="row text center" id="small-heading">
-        Jokes
+    <h2>Jester 5.0</h2>
+    <div class="row">
+        <div class="col-md-12 joke" ng-bind-html="joke.joke_text | unsafe"></div>
     </div>
-    <div class="col-md-12 joke" ng-bind-html="joke.joke_text | unsafe">></div>
-    <div class="col-md-12 slider-holder">
-        <div>
-            <span class="left-heading">Less Funny</span>
-            <span class="right-heading">More Funny</span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="slider-holder">
+                <div>
+                    <span class="heading text-left">Less Funny</span>
+                    <span class="heading text-right">More Funny</span>
+                </div>
+                <md-slider ng-model="rating" step="0.01" min="-10" max="10" aria-label="rating"></md-slider>
+            </div>
         </div>
-        <md-slider ng-model="rating" step="0.01" min="-10" max="10" aria-label="rating">
-        </md-slider>
     </div>
-    <md-button class="md-raised md-primary" ng-click="submitRating($event)">Submit</md-button>
+    <div class="row">
+        <md-button class="md-raised md-primary" ng-click="submitRating($event)">Submit</md-button>
+    </div>
+
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
