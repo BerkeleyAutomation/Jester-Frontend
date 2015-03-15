@@ -220,7 +220,7 @@ a:active, a:hover, a:link, a:visited {
 .joke > p {
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 1.1em;
+    font-size: 1.3em;
     line-height: 120% !important;
 }
 
@@ -246,4 +246,12 @@ div.md-track {
 
 .md-primary {
     margin-bottom: 25px !important;
+}
+
+.md-dialog-container {
+    position: fixed !important;
+}
+
+md-backdrop {
+    position: fixed !important;
 }

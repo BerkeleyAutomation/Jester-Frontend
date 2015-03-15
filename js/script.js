@@ -27,7 +27,7 @@ function justifyNavbar() {
         var items = $('.item'); // Number of Navbar items
         var navbarWidth = $('.collapse').width(); // Navbar width
         // Equal sized items. Offset by -1 for smooth resizing
-        var itemWidth = (navbarWidth / items.length) - 1.0;
+        var itemWidth = (navbarWidth / items.length) - 10.0;
         items.width(itemWidth);
     }
     else {
