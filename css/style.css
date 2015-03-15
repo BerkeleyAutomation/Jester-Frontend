@@ -72,10 +72,6 @@ h1 {
     font-size: 6.0em;
 }
 
-h2 {
-    font-size: 4.0em;
-}
-
 .icon-bar {
     border-color: #ffffff;
     background-color: #ffffff !important;
@@ -114,8 +110,8 @@ h2 {
 }
 
 /* Centers the Begin button */
-#begin-button-holder {
-    width: 250px;
+.button-sub-container {
+    width: 300px;
     margin: auto;
 }
 
@@ -135,24 +131,17 @@ input, label {
     width: 90% !important;
 }
 
-button.submit {
-    background: rgba(42, 84, 124, 0.90) !important;
-    width: 100px;
-}
-
 button {
     float: right;
     margin-left: 10px !important;
 }
 
-button.cancel {
-    background: rgb(240, 100, 100) !important;
+.negative {
+    background: #F06464 !important;
     width: 100px;
 }
 
 .text {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
     font-size: 17px;
 }
 
@@ -183,6 +172,18 @@ button.cancel {
     background: -o-linear-gradient(right, red, blue); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(right, red, blue); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to right, red, blue); /* Standard syntax */
+}
+
+#submit {
+    width: 150px;
+    padding: 10px;
+    display: inline;
+}
+
+#start-over {
+    width: 150px;
+    padding: 10px;
+    display: inline;
 }
 
 div.md-track.md-track-fill {
@@ -231,6 +232,11 @@ a:active, a:hover, a:link, a:visited {
 
 .md-thumb, .md-focus-thumb, .md-focus-ring  {
     margin-top: 9px;
+}
+
+.button-container {
+    width: 320px;
+    margin: auto;
 }
 
 div.md-track {
