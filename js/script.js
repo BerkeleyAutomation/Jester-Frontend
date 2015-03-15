@@ -117,15 +117,8 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
-        $scope.showLogoutConfirm = function (event) {
-            $mdDialog.show({
-                controller: LogoutController,
-                templateUrl: 'logout.tmpl.html',
-                targetEvent: event
-            });
-        };
     })
-    .controller('joke-controller', function ($scope, $http) {
+    .controller('joke-controller', function ($scope, $http, $mdDialog) {
         // Set default rating
         $scope.rating = 0;
         // Request a new joke. This will also perform authentication
@@ -141,6 +134,13 @@ angular.module('jester', ['ngMaterial'])
             // Request a new joke once a response is received
             promise.then(function() {
                 requestJoke($scope, $http);
+            });
+        };
+        $scope.showLogoutConfirm = function (event) {
+            $mdDialog.show({
+                controller: LogoutController,
+                templateUrl: 'logout.tmpl.html',
+                targetEvent: event
             });
         };
     })

@@ -174,7 +174,7 @@ button {
     background: linear-gradient(to right, red, blue); /* Standard syntax */
 }
 
-#submit {
+.small-button {
     width: 150px;
     padding: 10px;
     display: inline;
@@ -220,7 +220,7 @@ a:active, a:hover, a:link, a:visited {
 .joke > p {
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 1.4em;
+    font-size: 1.1em;
     line-height: 120% !important;
 }
 
