@@ -72,7 +72,16 @@
         </div>
     </div>
     <div class="row">
-        <md-button class="md-raised md-primary" ng-click="submitRating($event)">Submit</md-button>
+        <div class="col-md-12">
+            <div class="button-container">
+                <md-button class="md-raised md-primary positive" id="submit" ng-click="submitRating($event)">
+                    Submit
+                </md-button>
+                <md-button class="md-raised md-primary negative" id="submit" ng-click="submitRating($event)">
+                    Start Over
+                </md-button>
+            </div>
+        </div>
     </div>
 
 </div>
