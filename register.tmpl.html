@@ -2,8 +2,23 @@
     <md-content class="modal-content">
         <p class="modal-heading">Join Our Mailing List</p>
         <p>Join our mailing list to be notified about any updates to the system</p>
-        <md-text-float label="Email" ng-model="user.email" type="email" class="long"> </md-text-float>
-        <md-button class="md-raised md-primary negative" ng-click="cancel()">Cancel</md-button>
-        <md-button class="md-raised md-primary positive" ng-click="submit()">Submit</md-button>
+        <md-input-container>
+            <label>Email</label>
+            <input label="Email" ng-model="user.email" type="email" class="long">
+        </md-input-container>
+        <div id="select-holder">
+            <md-select ng-model="user.source">
+                <md-option value="Search Engine">Search Engine</md-option>
+                <md-option value="Social Network">Social Network</md-option>
+                <md-option value="Advertisment">Advertisment</md-option>
+                <md-option value="Friend">Friend</md-option>
+                <md-option value="Forum or Blog">Forum or Blog</md-option>
+                <md-option value="Other">Other</md-option>
+            </md-select>
+        </div>
+        <div id="register-button-group">
+            <md-button class="md-raised md-primary negative dialog-button" ng-click="cancel()">Cancel</md-button>
+            <md-button class="md-raised md-primary positive dialog-button" ng-click="submit()">Submit</md-button>
+        </div>
     </md-content>
 </md-dialog>
