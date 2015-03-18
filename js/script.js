@@ -7,7 +7,10 @@ BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
+LOG_SLIDER_URL = BASE_URL + 'log_slider/{0}/{1}';
 HOME_URL = "http://berkeleyautomation.github.io/Jester-Frontend";
+
+var old_rating = 0.0;
 
 String.prototype.format = String.prototype.f = function () {
     var s = this,
@@ -17,6 +20,7 @@ String.prototype.format = String.prototype.f = function () {
     }
     return s;
 };
+
 
 /**
  * Equal spaces the items on the Navbar if the screen is large
@@ -35,6 +39,7 @@ function justifyNavbar() {
     }
 }
 
+
 /**
  * Controller for the register dialog
  * @param $scope
@@ -47,12 +52,11 @@ function RegisterController($scope, $mdDialog) {
     };
     $scope.submit = function () {
         if (typeof $scope.user.email != 'undefined') {
-            var c = get(BASE_URL + 'register_user/' + $scope.user.email + '/' +
-            $scope.user.password + '/');
-            console.log(c);
+            console.log($scope.user.source);
         }
     };
 }
+
 
 /**
  * Controller for the logout dialog
@@ -78,6 +82,7 @@ function LogoutController($scope, $http, $mdDialog) {
     };
 }
 
+
 /**
  * Run this code when the page loads
  */
@@ -88,6 +93,7 @@ $(document).ready(function () {
         justifyNavbar();
     });
 });
+
 
 /**
  * Requests the next joke from the server. Uses $http to refresh the view as soon
@@ -105,6 +111,17 @@ function requestJoke($scope, $http) {
     promise.then(function (payload) {
         $scope.joke = payload.data;
     });
+}
+
+
+function logSliderMovement($scope, $http) {
+    var rating = $scope.rating; // In case async request takes too long
+    var promise = $http({
+        url: LOG_SLIDER_URL.format(old_rating, $scope.rating),
+        type: 'GET',
+        withCredentials: true
+    });
+    old_rating = rating;
 }
 
 
@@ -134,6 +151,7 @@ angular.module('jester', ['ngMaterial'])
             // Request a new joke once a response is received
             promise.then(function() {
                 requestJoke($scope, $http);
+                $scope.rating = 0.0; // Reset slider to 0
             });
         };
         $scope.showLogoutConfirm = function (event) {
@@ -143,6 +161,21 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
+
+        $scope.click = function() {
+            if (old_rating != $scope.rating) {
+                logSliderMovement($scope, $http);
+            }
+        };
+        $scope.$watch(function() {return $('#slider').hasClass('dragging')}, function(newValue, oldValue) {
+            if (oldValue == false && newValue == false) {
+                $scope.tracking_movement = true;
+                $scope.old_rating = $scope.rating;
+            }
+            if ($scope.tracking_movement && oldValue == true && newValue == false) {
+                logSliderMovement($scope, $http);
+            }
+        });
     })
     // Directly inject html
     .filter('unsafe', function ($sce) {
