@@ -46,9 +46,9 @@
         <!-- Navbar Items-->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" class="item active-item">Home</a></li>
-                <li><a class="item" href="about.html">About</a></li>
-                <li><a class="item" href="#" ng-click="showRegister($event)">Join Our Mailing List</a></li>
+                <li class="active"><a href="#" class="item active-item"><span class="mouseover">Home</span></a></li>
+                <li><a class="item" href="about.html"><span class="mouseover">About</span></a></li>
+                <li><a class="item" href="#" ng-click="showRegister($event)"><span class="mouseover">Join Our Mailing List</span></a></li>
             </ul>
         </div>
 
@@ -57,6 +57,11 @@
 <!-- Page Content -->
 <div class="content container">
     <h1>Jester 5.0</h1>
+    <div class="row tagline">
+        <div class="col-md-12 text-center">
+            Jokes For <span class="italic">Your</span> Sense of Humor
+        </div>
+    </div>
     <div class="disclaimer">
         Note: Some jokes may be considered offensive. If you are
         offended by mild ethnic, sexist or religious jokes, please
@@ -72,6 +77,14 @@
         </div>
     </div>
 </div>
+
+<footer class="text-center" ng-controller="jester-homepage-controller">
+    Jester is a project by the UC Berkeley Lab for Automation and Science Engineering
+    <img src="img/ucb logo.png" class="ucb_logo"/><br>
+    <a href="#">
+        <span ng-click="showPrivacyAlert($event)">Privacy Policy</span>
+    </a>
+</footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>

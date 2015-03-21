@@ -58,6 +58,13 @@ function RegisterController($scope, $mdDialog) {
 }
 
 
+function PrivacyController($scope, $mdDialog) {
+    $scope.submit = function() {
+        $mdDialog.cancel();
+    }
+}
+
+
 /**
  * Controller for the logout dialog
  * @param $scope
@@ -91,6 +98,18 @@ $(document).ready(function () {
     // Window is resized after loading
     $(window).resize(function () {
         justifyNavbar();
+    });
+    var item = $('.item');
+    item.mouseenter(function() {
+       if ($(this).hasClass('.active-item') == true) {
+           console.log("Hi");
+           $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.65)');
+       }
+    });
+    item.mouseleave(function() {
+        if ($(this).hasClass('.active-item')) {
+            $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.0)');
+        }
     });
 });
 
@@ -131,6 +150,15 @@ angular.module('jester', ['ngMaterial'])
             $mdDialog.show({
                 controller: RegisterController,
                 templateUrl: 'register.tmpl.html',
+                targetEvent: event
+            });
+        };
+    })
+    .controller('jester-homepage-controller', function($scope, $mdDialog) {
+        $scope.showPrivacyAlert = function(ev) {
+            $mdDialog.show({
+                controller: PrivacyController,
+                templateUrl: 'privacy.tmpl.html',
                 targetEvent: event
             });
         };
@@ -176,6 +204,7 @@ angular.module('jester', ['ngMaterial'])
                 logSliderMovement($scope, $http);
             }
         });
+
     })
     // Directly inject html
     .filter('unsafe', function ($sce) {
