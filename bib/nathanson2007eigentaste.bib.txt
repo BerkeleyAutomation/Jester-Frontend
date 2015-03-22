@@ -1,0 +1,8 @@
+@inproceedings{nathanson2007eigentaste,
+  title={Eigentaste 5.0: constant-time adaptability in a recommender system using item clustering},
+  author={Nathanson, Tavi and Bitton, Ephrat and Goldberg, Ken},
+  booktitle={Proceedings of the 2007 ACM conference on Recommender systems},
+  pages={149--152},
+  year={2007},
+  organization={ACM}
+}

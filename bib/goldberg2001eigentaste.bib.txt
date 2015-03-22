@@ -1,0 +1,10 @@
+@article{goldberg2001eigentaste,
+  title={Eigentaste: A constant time collaborative filtering algorithm},
+  author={Goldberg, Ken and Roeder, Theresa and Gupta, Dhruv and Perkins, Chris},
+  journal={Information Retrieval},
+  volume={4},
+  number={2},
+  pages={133--151},
+  year={2001},
+  publisher={Springer}
+}
