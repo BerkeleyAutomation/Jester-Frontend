@@ -94,11 +94,6 @@ function LogoutController($scope, $http, $mdDialog) {
  * Run this code when the page loads
  */
 $(document).ready(function () {
-    justifyNavbar();
-    // Window is resized after loading
-    $(window).resize(function () {
-        justifyNavbar();
-    });
     var item = $('.item');
     item.mouseenter(function() {
        if ($(this).hasClass('.active-item') == true) {
