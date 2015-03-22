@@ -94,24 +94,17 @@ function LogoutController($scope, $http, $mdDialog) {
  * Run this code when the page loads
  */
 $(document).ready(function () {
-
-    //justifyNavbar();
-    // Window is resized after loading
-    $(window).resize(function () {
-        //justifyNavbar();
-    });
-
     var item = $('.item');
     item.mouseenter(function() {
-       if ($(this).hasClass('.active-item') == true) {
-           console.log("Hi");
-           $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.65)');
-       }
+        if ($(this).hasClass('active-item')) {
+            $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.65)');
+        }
+        else {
+            $(this).children('.mouseover').css('background', 'rgba(153, 15, 9, 0.65)');
+        }
     });
     item.mouseleave(function() {
-        if ($(this).hasClass('.active-item')) {
-            $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.0)');
-        }
+        $(this).children('.mouseover').css('background', 'rgba(0, 0, 0, 0.0)');
     });
 });
 
