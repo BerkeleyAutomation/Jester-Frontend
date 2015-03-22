@@ -27,6 +27,16 @@
 
     <!-- Custom style sheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+    h2 {
+        text-align: left;
+    }
+    </style>
+    <script type="text/javascript">
+    function email(e) {
+        return e + "@berkeley.edu";
+    }
+    </script>
 </head>
 <body ng-app="jester">
 <!-- Register Modal -->
@@ -55,18 +65,87 @@
     </div>
 </nav>
 <!-- Page Content -->
-<div class="content container center">
-    <h2>Credits</h2>
+<div class="content container">
+
+    <h2>About</h2>
+    <div class="row">
+        <div class="col-md-12 text bold">
+            <p>Jester is a joke recommender system developed at UC Berkeley to study social information filtering.</p>
+
+            <p>Version 5.0, launched on April 1, 2015, includes new jokes, interface, and algorithms. </p>
+        </div>
+    </div>
+
+    <h2>Contact</h2>
+    <div class="row">
+        <div class="col-md-12 text">
+            <p>
+                <a href="http://goldberg.berkeley.edu">Ken Goldberg</a></br>
+                <script>document.write(email('goldberg'))</script></br>
+                Professor, IEOR and EECS, UC Berkeley
+            </p>
+
+            <p>
+                Viraj Mahesh</br>
+                <script>document.write(email('virajmahesh'))</script></br>
+                EECS, UC Berkeley
+            </p>
+        </div>
+    </div>
+
+    <h2>Datasets for Research</h2>
 
     <div class="row">
         <div class="col-md-12 text">
-            <p class="center">For details on the algorithm behind Jester, please see:</p>
-            <p class="center bold">Eigentaste: A Constant Time Collaborative Filtering Algorithm.</p>
-            <p>
-                Ken Goldberg, Theresa Roeder, Dhruv Gupta, and Chris Perkins.
-                Information Retrieval, 4(2), 133-151. July 2001.
+            <p>Datasets containing over 5 million anonymous joke ratings from 150k users are freely available for research use at:</br>
+            <a href="http://eigentaste.berkeley.edu/dataset/">http://eigentaste.berkeley.edu/dataset/</a>
+            </p>
+
+            <p>As a courtesy, if you use the data, we would appreciate knowing your name, what research group you are in, and the publications that may result.
             </p>
         </div>
+    </div>
+
+    <h2>Publications</h2>
+
+    <div class="row">
+        <div class="col-md-12 text">
+            <p>
+                <a href="http://goldberg.berkeley.edu/pubs/Eigentaste-Info-Retrieval-Journal.pdf">
+                Eigentaste: A Constant Time Collaborative Filtering Algorithm</a> [<a href="bib/goldberg2001eigentaste.bib.txt">bibtex</a>]</br>
+                Ken Goldberg, Theresa Roeder, Dhruv Gupta, and Chris Perkins
+                Information Retrieval, 4(2), 133-151. July 2001.
+                
+            </p>
+
+            <p>
+                <a href="http://goldberg.berkeley.edu/pubs/tavi-recsys2007-spap122s1-nathanson.pdf">
+                Eigentaste 5.0: Constant-Time Adaptability in a Recommender System Using Item Clustering</a> [<a href="bib/nathanson2007eigentaste.bib.txt">bibtex</a>]</br>
+                Tavi Nathanson, Ephrat Bitton, and Ken Goldberg
+                ACM Conference on Recommender Systems (RecSys) , Minneapolis, MN, Oct 2007.
+                
+            </p>
+
+            <p>
+                <a href="http://www.eecs.berkeley.edu/Pubs/TechRpts/2009/EECS-2009-85.html">
+                Algorithms, Models and Systems for Eigentaste-Based Collaborative Filtering and Visualization</a> [<a href="bib/nathanson2009masters.bib.txt">bibtex</a>]</br>
+                Tavi Nathanson
+                Master's thesis, EECS Department, University of California, Berkeley, May 2009.
+            </p>
+
+            <p>
+                <a href="http://scholar.google.com/scholar?cites=8528105010932990631">Papers using the Jester Dataset</a>
+            </p>
+        </div>
+    </div>
+
+    <h2>Credits</h2>
+
+    <div class="row">
+
+    <div class="row">
+        <div class="col-md-6 text center bold">Jester 5.0 Project Team:</div>
+        <div class="col-md-6 text center">Ken Goldberg, Viraj Mahesh, Sanjay Krishnan, Jay Patel</div>
     </div>
     <div class="row">
         <div class="col-md-6 text center bold">Jester 4.0 Project Team:</div>
@@ -77,18 +156,18 @@
         <div class="col-md-6 text center">Ken Goldberg, Robert Hennessy</div>
     </div>
     <div class="row">
-        <div class="col-md-6 text  bold">Jester 2.0 Project Team:</div>
+        <div class="col-md-6 text center bold">Jester 2.0 Project Team:</div>
         <div class="col-md-6 text center">Ken Goldberg, Dhruv Gupta, Chris Perkins</div>
     </div>
     <div class="row">
         <div class="col-md-6 text center bold">Jester 1.0 Project Team:</div>
         <div class="col-md-6 text center">Ken Goldberg, Dhruv Gupta, Hiro Narita, Mark DiGiovanni</div>
     </div>
-    <div class="row" style="padding-top: 40px;">
-        <h2>We Thank</h2>
-        <div class="col-md-12 text center">
-            Richard Wallace, Hal Varian, Vivek Sanghi, Carol Kirschenbaum,
-            Avi Goldberg, David Pescovitz, Bob Farzin, Adam Jacobs, Derek Poon, and Cathie Walker
+
+    <div class="row">
+        <div class="col-md-12 text bold">
+        We would also like to thank Richard Wallace, Hal Varian, Vivek Sanghi, Carol Kirschenbaum,
+        Avi Goldberg, David Pescovitz, Bob Farzin, Adam Jacobs, Derek Poon, and Cathie Walker.
         </div>
     </div>
 
@@ -107,14 +186,8 @@
             <img src="img/Makeuseof.png" class="press-image">
         </div>
     </div>
-    <div class="row">
-        <h2>More Information</h2>
-        <div class="col-md-12 text">
-            Algorithms, Models and Systems for Eigentaste-Based Collaborative Filtering and Visualization
-            <p>Tavi Nathanson. Master's thesis, EECS Department, University of California, Berkeley, May 2009.</p>
-        </div>
-    </div>
 </div>
+</br>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
