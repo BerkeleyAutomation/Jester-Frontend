@@ -237,6 +237,10 @@ a:active, a:hover, a:link, a:visited {
     font-size: 1.4em;
 }
 
+#joke-div {
+    display: none;
+}
+
 .md-focus-thumb, .md-thumb {
     background-color: #ffffff;
 }
