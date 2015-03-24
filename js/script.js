@@ -106,7 +106,6 @@ $(document).ready(function () {
     item.mouseleave(function() {
         $(this).children('.mouseover').css('background', 'rgba(0, 0, 0, 0.0)');
     });
-    $("#joke-div").hide();
 });
 
 
@@ -142,6 +141,12 @@ function logSliderMovement($scope, $http) {
     old_rating = rating;
 }
 
+function getNextJoke($scope, $http, success) {
+    requestJoke($scope, $http, success);
+    $scope.rating = 0.0; // Reset slider to 0
+    old_rating = 0.0;
+}
+
 
 angular.module('jester', ['ngMaterial'])
     .controller('navbar-controller', function ($scope, $http, $mdDialog) {
@@ -170,9 +175,19 @@ angular.module('jester', ['ngMaterial'])
         };
         // Set default rating
         $scope.rating = 0;
+        $scope.jokes_rated = 0;
+        $scope.disabled = false;
+
         // Submit a rating and request the next joke
         $scope.submitRating = function () {
-            // Submit the rating
+            // Submit the rating only if button is not disabled
+            //if ($('#submit').attr('disabled')) {
+            //    return;
+            //}
+            if ($scope.disabled) {
+                return;
+            }
+            $scope.disabled = true;
             var promise = $http({
                 url: RATE_URL.format($scope.joke.joke_id, $scope.rating.toFixed(3)),
                 type: 'GET',
@@ -180,9 +195,10 @@ angular.module('jester', ['ngMaterial'])
             });
             // Request a new joke once a response is received
             promise.then(function() {
-                requestJoke($scope, $http);
-                $scope.rating = 0.0; // Reset slider to 0
-                old_rating = 0.0;
+                getNextJoke($scope, $http, function () {
+                    //console.log('Submit should be enabled');
+                    $scope.disabled = false;
+                });
             });
         };
         $scope.showLogoutConfirm = function (event) {
