@@ -181,9 +181,6 @@ angular.module('jester', ['ngMaterial'])
         // Submit a rating and request the next joke
         $scope.submitRating = function () {
             // Submit the rating only if button is not disabled
-            //if ($('#submit').attr('disabled')) {
-            //    return;
-            //}
             if ($scope.disabled) {
                 return;
             }
@@ -196,7 +193,6 @@ angular.module('jester', ['ngMaterial'])
             // Request a new joke once a response is received
             promise.then(function() {
                 getNextJoke($scope, $http, function () {
-                    //console.log('Submit should be enabled');
                     $scope.disabled = false;
                 });
             });
