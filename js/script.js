@@ -97,15 +97,16 @@ $(document).ready(function () {
     var item = $('.item');
     item.mouseenter(function() {
         if ($(this).hasClass('active-item')) {
-            $(this).children('.mouseover').css('background', 'rgba(240, 129, 131, 0.65)');
+            $(this).children('.mouseover').css('background', 'rgba(6,188, 75, 0.65)');
         }
         else {
-            $(this).children('.mouseover').css('background', 'rgba(153, 15, 9, 0.65)');
+            $(this).children('.mouseover').css('background', 'rgba(5, 72, 36, 0.65)');
         }
     });
     item.mouseleave(function() {
         $(this).children('.mouseover').css('background', 'rgba(0, 0, 0, 0.0)');
     });
+    $("#joke-div").hide();
 });
 
 
@@ -115,7 +116,7 @@ $(document).ready(function () {
  * @param $scope The angular-js scope to bind the joke data.
  * @param $http
  */
-function requestJoke($scope, $http) {
+function requestJoke($scope, $http, sucess) {
     var promise = $http({
         url: REQUEST_URL,
         type: 'GET',
@@ -124,6 +125,9 @@ function requestJoke($scope, $http) {
     // Update the view once a response is received
     promise.then(function (payload) {
         $scope.joke = payload.data;
+        if (typeof sucess != 'undefined') {
+            sucess();
+        }
     });
 }
 
@@ -149,7 +153,7 @@ angular.module('jester', ['ngMaterial'])
             });
         };
     })
-    .controller('jester-homepage-controller', function($scope, $mdDialog) {
+    .controller('jester-controller', function($scope, $http, $mdDialog) {
         $scope.showPrivacyAlert = function(ev) {
             $mdDialog.show({
                 controller: PrivacyController,
@@ -157,12 +161,17 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
-    })
-    .controller('joke-controller', function ($scope, $http, $mdDialog) {
+
+        $scope.begin = function(ev) {
+            requestJoke($scope, $http, function() {
+                $("#home-div").hide();
+                $("#joke-div").show();
+            });
+        };
         // Set default rating
         $scope.rating = 0;
         // Request a new joke. This will also perform authentication
-        requestJoke($scope, $http);
+        // requestJoke($scope, $http);
         // Submit a rating and request the next joke
         $scope.submitRating = function () {
             // Submit the rating
@@ -175,6 +184,7 @@ angular.module('jester', ['ngMaterial'])
             promise.then(function() {
                 requestJoke($scope, $http);
                 $scope.rating = 0.0; // Reset slider to 0
+                old_rating = 0.0;
             });
         };
         $scope.showLogoutConfirm = function (event) {

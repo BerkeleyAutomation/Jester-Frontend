@@ -50,14 +50,14 @@ body {
 }
 
 .navbar {
-    background: #F03832;
+    background: #1DBB5B;
     border: none !important;
     /* Prevent Navbar edges from being rounded */
     border-radius: 0 !important;
     /* Shadows for the Navbar */
-    box-shadow: 0 9px 0 #990F09;
-    -webkit-box-shadow: 0 9px 0 #990F09;
-    -moz-box-shadow: 0 9px 0 #990F09;
+    box-shadow: 0 9px 0 #055C24;
+    -webkit-box-shadow: 0 9px 0 #055C24;
+    -moz-box-shadow: 0 9px 0 #055C24;
 }
 
 #navbar-collapse {
@@ -219,7 +219,7 @@ div.md-track.md-track-fill {
 }
 
 .active-item {
-    background: rgb(153, 15, 9) !important;
+    background: #055C24 !important;
 }
 
 .link {
