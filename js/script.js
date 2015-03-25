@@ -8,7 +8,7 @@ REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
 LOG_SLIDER_URL = BASE_URL + 'log_slider/{0}/{1}';
-HOME_URL = "http://berkeleyautomation.github.io/Jester-Frontend";
+HOME_URL = 'index.html';
 
 var old_rating = 0.0;
 
@@ -20,24 +20,6 @@ String.prototype.format = String.prototype.f = function () {
     }
     return s;
 };
-
-
-/**
- * Equal spaces the items on the Navbar if the screen is large
- * Otherwise, Navbar items occupy the entire line in the dropdown menu
- */
-function justifyNavbar() {
-    if ($(window).width() >= 768) {
-        var items = $('.item'); // Number of Navbar items
-        var navbarWidth = $('.collapse').width(); // Navbar width
-        // Equal sized items. Offset by -1 for smooth resizing
-        var itemWidth = (navbarWidth / items.length) - 10.0;
-        items.width(itemWidth);
-    }
-    else {
-        $('.item').css('width', '100%'); // Navbar items occupy entire line
-    }
-}
 
 
 /**
@@ -64,13 +46,14 @@ function PrivacyController($scope, $mdDialog) {
     }
 }
 
+function BeginRecommending($scope, $http, $mdDialog, outer_scope) {
+    $scope.continue_rating = function () {
+        getNextJoke(outer_scope, $http);
+        $mdDialog.cancel();
+    };
+}
 
-/**
- * Controller for the logout dialog
- * @param $scope
- * @param $mdDialog
- * @constructor
- */
+
 function LogoutController($scope, $http, $mdDialog) {
     $scope.cancel = function () {
         $mdDialog.cancel();
@@ -141,8 +124,10 @@ function logSliderMovement($scope, $http) {
     old_rating = rating;
 }
 
-function getNextJoke($scope, $http, success) {
-    requestJoke($scope, $http, success);
+function getNextJoke($scope, $http) {
+    requestJoke($scope, $http, function () {
+        $scope.disabled = false;
+    });
     $scope.rating = 0.0; // Reset slider to 0
     old_rating = 0.0;
 }
@@ -192,9 +177,19 @@ angular.module('jester', ['ngMaterial'])
             });
             // Request a new joke once a response is received
             promise.then(function() {
-                getNextJoke($scope, $http, function () {
-                    $scope.disabled = false;
-                });
+                if ($scope.joke.joke_id == 54) {
+                    console.log($scope);
+                    $mdDialog.show({
+                        controller: BeginRecommending,
+                        templateUrl: 'begin_recommending.tmpl.html',
+                        locals: {
+                            outer_scope: $scope
+                        }
+                    });
+                }
+                else {
+                    getNextJoke($scope, $http);
+                }
             });
         };
         $scope.showLogoutConfirm = function (event) {
