@@ -7,7 +7,9 @@ BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
-LOG_SLIDER_URL = BASE_URL + 'log_slider/{0}/{1}';
+LOG_SLIDER_URL = BASE_URL + 'log_slider/{0}/{1}/';
+MAILING_LIST_URL = BASE_URL + 'join_mailing_list/';
+
 HOME_URL = 'index.html';
 
 var old_rating = 0.0;
@@ -27,14 +29,31 @@ String.prototype.format = String.prototype.f = function () {
  * @param $scope
  * @param $mdDialog
  */
-function RegisterController($scope, $mdDialog) {
+function MailingListController($scope, $http, $mdDialog) {
     $scope.cancel = function () {
         $mdDialog.cancel();
-        console.log('Register cancel');
     };
+
     $scope.submit = function () {
-        if (typeof $scope.user.email != 'undefined') {
-            console.log($scope.user.source);
+        if (typeof $scope.user.email != 'undefined'
+            && typeof $scope.user.reference != 'undefined') {
+
+            var email = $scope.user.email;
+            var reference = $scope.user.reference;
+
+            var promise = $http({
+                url: MAILING_LIST_URL,
+                type: 'GET',
+                withCredentials: true,
+                params: {
+                    email: email,
+                    reference: reference
+                }
+            });
+
+            promise.then(function () {
+                $mdDialog.cancel();
+            });
         }
     };
 }
@@ -135,10 +154,10 @@ function getNextJoke($scope, $http) {
 
 angular.module('jester', ['ngMaterial'])
     .controller('navbar-controller', function ($scope, $http, $mdDialog) {
-        $scope.showRegister = function (event) {
+        $scope.showMailingList = function (event) {
             $mdDialog.show({
-                controller: RegisterController,
-                templateUrl: 'register.tmpl.html',
+                controller: MailingListController,
+                templateUrl: 'mailing_list.tmpl.html',
                 targetEvent: event
             });
         };
@@ -178,7 +197,6 @@ angular.module('jester', ['ngMaterial'])
             // Request a new joke once a response is received
             promise.then(function() {
                 if ($scope.joke.joke_id == 54) {
-                    console.log($scope);
                     $mdDialog.show({
                         controller: BeginRecommending,
                         templateUrl: 'begin_recommending.tmpl.html',
