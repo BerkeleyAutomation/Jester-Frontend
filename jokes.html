@@ -46,20 +46,39 @@
         <!-- Navbar Items-->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a class="item" href="index.html">Home</a></li>
-                <li><a class="item" href="about.html">About</a></li>
-                <li><a class="item" href="#" ng-click="showRegister($event)">Join Our Mailing List</a></li>
+                <li><a class="item" href="index.html"><img src="img/home_icon.png" width="30px"></img></a></li>
+                <li><a class="item" href="about.html"><img src="img/about_icon.png" width="30px"></img></a></li>
+                <li><a class="item" href="#" ng-click="showRegister($event)"><img src="img/email_icon.png" width="30px"></img></a></li>
             </ul>
         </div>
 
     </div>
 </nav>
+
 <!-- Page Content -->
 <div class="content container" ng-controller="joke-controller">
-    <h2>Jester 5.0</h2>
+    <!--<h2>Jester 5.0</h2>-->
+    <div class="row">
+        <div class="col-md-12 joke">
+            Before you can recieve recommendations, Jester need ratings on two initial jokes.
+        </div>
+
+        <!--<div class="col-md-12 joke">
+            As your rate more jokes, Jester improves its recommendations.
+        </div>-->
+    </div>
+
     <div class="row">
         <div class="col-md-12 joke" ng-bind-html="joke.joke_text | unsafe"></div>
-    </div>
+        
+        <div class="col-md-12 joke"><strong>Joke 1 of 2</strong> <br/>
+            Computer Science major walks into an English class<br/>
+            The Professor says "Welcome to English 101".<br/>
+            The student panicks.<br/>
+            "What's wrong?" asks the Professor.<br/>
+            "I missed the first 4 English classes".<br/></div>
+        </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="slider-holder">
@@ -73,18 +92,16 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="button-container">
-                <md-button class="md-raised md-primary positive small-button" id="submit" ng-click="submitRating($event)">
+    <!--<div class="row">
+        <div class="col-md-12 next-joke">
+        <div class="button-container">
+                <md-button class="md-raised md-primary positive" id="submit" ng-click="submitRating($event)">
                     Next
                 </md-button>
-                <md-button class="md-raised md-primary negative small-button" id="logout" ng-click="showLogoutConfirm($event)">
-                    Start Over
-                </md-button>
-            </div>
         </div>
-    </div>
+
+        </div>
+    </div>-->
 
 </div>
 

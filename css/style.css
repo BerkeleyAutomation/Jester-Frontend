@@ -35,14 +35,14 @@ body {
 }
 
 .navbar {
-    background: #F03832;
-    border: none !important;
+    background: #70c11a;
+    border: 1px solid white !important;
     /* Prevent Navbar edges from being rounded */
     border-radius: 0 !important;
     /* Shadows for the Navbar */
-    box-shadow: 0 9px 0 #990F09;
+    /*box-shadow: 0 9px 0 #990F09;
     -webkit-box-shadow: 0 9px 0 #990F09;
-    -moz-box-shadow: 0 9px 0 #990F09;
+    -moz-box-shadow: 0 9px 0 #990F09;*/
 }
 
 #navbar-collapse {
@@ -51,15 +51,15 @@ body {
 
 .item {
     color: white !important;
-    font-size: 1.4em !important;
-    font-weight: 700;
+    font-size: 2em !important;
+    font-weight: 300;
     padding-left: 0 !important;
     padding-right: 0 !important;
     text-align: center !important;
 }
 
 .item:focus {
-    outline: 0;
+    outline: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -99,7 +99,7 @@ h2 {
 }
 
 .positive {
-    background: #68c10a !important;
+    background: #70c11a !important;
     font-size: 2.0em !important;
     font-family: 'Roboto', "Helvetica Neue", sans-serif !important;
     font-weight: 500 !important;
@@ -182,12 +182,17 @@ button {
 }
 
 .md-track {
-    height: 7px !important;
-    border-radius: 6px;
-    background: -webkit-linear-gradient(left, red, blue); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, red, blue); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, red, blue); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, red, blue); /* Standard syntax */
+    border-radius: 2px !important;
+    border: 2px #CCCCCC solid;
+background: #309dd8; /* Old browsers */
+background: -moz-linear-gradient(left, #309dd8 0%, #f05122 0%, #7cbb42 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,#309dd8), color-stop(0%,#f05122), color-stop(100%,#7cbb42)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, #309dd8 0%,#f05122 0%,#7cbb42 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, #309dd8 0%,#f05122 0%,#7cbb42 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, #309dd8 0%,#f05122 0%,#7cbb42 100%); /* IE10+ */
+background: linear-gradient(to right, #309dd8 0%,#f05122 0%,#7cbb42 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#309dd8', endColorstr='#7cbb42',GradientType=1 ); /* IE6-9 */
+
 }
 
 .small-button {
@@ -221,8 +226,8 @@ a:active, a:hover, a:link, a:visited {
 .heading {
     display: inline-block;
     width: 49%;
-    font-family: 'Lobster', sans-serif;
-    font-size: 1.4em;
+    /*font-family: 'Lobster', sans-serif;*/
+    font-size: 2em;
 }
 
 .md-focus-thumb, .md-thumb {
@@ -230,19 +235,22 @@ a:active, a:hover, a:link, a:visited {
 }
 
 .joke {
-    margin-top: 20px;
+    margin-top: 5px;
+    font-size: 2em;
+    line-height: 1.5em;
+    margin-bottom: 5px;
 }
 
 .joke > p {
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 1.3em;
+    font-size: 2em;
     line-height: 120% !important;
 }
 
 .slider-holder {
     display: block;
-    max-width: 500px;
+    max-width: 700px;
     margin: auto !important;
 }
 
@@ -251,8 +259,13 @@ a:active, a:hover, a:link, a:visited {
 }
 
 .button-container {
-    width: 320px;
-    margin: auto;
+    width: 300px;
+    /*margin: auto;*/
+}
+
+.next-joke{
+    max-width: 700px !important;
+    text-align: center !important;
 }
 
 div.md-track {
