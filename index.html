@@ -57,7 +57,7 @@
         <!-- Navbar Items-->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html" class="item active-item"><span><img class="navbar-img" src="img/home_icon.png"/></span></a></li>
+                <li><a href="index.html" class="item active-item"><span><img class="navbar-img" src="img/home_icon.png"/></span></a></li>
                 <li><a class="item" href="about.html"><span><img class="navbar-img" src="img/about_icon.png"/></span></a></li>
                 <li><a class="item" href="#" ng-click="showMailingList($event)"><span><img class="navbar-img" src="img/email_icon.png"/></span></a>
                 </li>
@@ -79,7 +79,7 @@
     <div class="row">
         <div class="button-sub-container">
             <!--<a href="jokes.html">-->
-                <md-button class="md-raised md-primary positive" id="begin" ng-click="begin()">
+                <md-button class="md-raised md-primary positive big-button-text" id="begin" ng-click="begin()">
                     Begin
                 </md-button>
             <!--</a>-->
@@ -103,7 +103,6 @@
 
 </div>
 <div class="content container" id="joke-div" >
-    <h2>Jester 5.0</h2>
     <div class="row">
         <div class="col-md-12 joke" ng-bind-html="joke.joke_text | unsafe"></div>
     </div>
@@ -114,25 +113,25 @@
                     <span class="heading text-left">Less Funny</span>
                     <span class="heading text-right">More Funny</span>
                 </div>
-                <md-slider ng-model="rating" step="0.01" min="-10" max="10" aria-label="rating" id="slider" ng-click="click()">
+                <md-slider ng-model="rating" step="0.01" min="-10" max="10" aria-label="rating" id="slider" ng-click="submitRating($event)">
 
                 </md-slider>
             </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12">
             <div class="button-container">
-                <md-button class="md-raised md-primary positive small-button" id="submit"
+                <md-button class="md-raised md-primary positive small-button big-button-text" id="submit"
                            ng-click="submitRating($event)" ng-disabled="disabled">
                     Next
                 </md-button>
-                <!-- <md-button class="md-raised md-primary negative small-button" id="logout" ng-click="showLogoutConfirm($event)">
+                <md-button class="md-raised md-primary negative small-button" id="logout" ng-click="showLogoutConfirm($event)">
                     Start Over
-                </md-button>-->
+                </md-button>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </div>
 </div>
