@@ -175,6 +175,7 @@ angular.module('jester', ['ngMaterial'])
             requestJoke($scope, $http, function() {
                 $("#home-div").hide();
                 $("#joke-div").show();
+                $("nav").show();
             });
         };
         // Set default rating
