@@ -179,7 +179,7 @@ angular.module('jester', ['ngMaterial'])
 
         $scope.begin = function(ev) {
             requestJoke($scope, $http, function() {
-                $("#home-div").hide();
+                $("#home-div").fadeOut();
                 $("#joke-div").show();
                 $("nav").show();
             });
@@ -195,6 +195,7 @@ angular.module('jester', ['ngMaterial'])
             if ($scope.disabled) {
                 return;
             }
+	    //$('.joke-text').fadeOut(800);
             $scope.disabled = true;
             var promise = $http({
                 url: RATE_URL.format($scope.joke.joke_id, $scope.rating.toFixed(3)),
