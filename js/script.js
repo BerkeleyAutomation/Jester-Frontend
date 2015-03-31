@@ -14,6 +14,11 @@ HOME_URL = 'index.html';
 
 var old_rating = 0.0;
 
+var instructions = [
+  "As you rate more jokes, Jester improves its recommendations by learning your sense of humor.",
+  "Before you can receive recommendations, Jester need ratings on two initial jokes.",
+];
+
 String.prototype.format = String.prototype.f = function () {
     var s = this,
         i = arguments.length;
@@ -126,6 +131,7 @@ function requestJoke($scope, $http, sucess) {
     // Update the view once a response is received
     promise.then(function (payload) {
         $scope.joke = payload.data;
+        $scope.instructions = instructions[$scope.joke.gauge];
         if (typeof sucess != 'undefined') {
             sucess();
         }
@@ -197,8 +203,8 @@ angular.module('jester', ['ngMaterial'])
             });
             // Request a new joke once a response is received
             promise.then(function() {
-                if ($scope.joke.joke_id == 54) {
-                    $mdDialog.show({
+                /* if ($scope.joke.joke_id == 54) {
+                     $mdDialog.show({
                         controller: BeginRecommending,
                         templateUrl: 'begin_recommending.tmpl.html',
                         locals: {
@@ -208,7 +214,8 @@ angular.module('jester', ['ngMaterial'])
                 }
                 else {
                     getNextJoke($scope, $http);
-                }
+                } */
+                getNextJoke($scope, $http);
             });
         };
         $scope.showLogoutConfirm = function (event) {
