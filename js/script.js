@@ -196,6 +196,7 @@ angular.module('jester', ['ngMaterial'])
                 return;
             }
 	    //$('.joke-text').fadeOut(800);
+	    window.scrollTo(0,0);
             $scope.disabled = true;
             var promise = $http({
                 url: RATE_URL.format($scope.joke.joke_id, $scope.rating.toFixed(3)),
