@@ -42,7 +42,7 @@
 <body ng-app="jester">
 <!-- Register Modal -->
 <!-- Navbar -->
-<nav class="navbar navbar-default" id="navbar" ng-controller="navbar-controller">
+<nav class="navbar navbar-default" id="navbar" ng-controller="navbar-controller" style="display:none">
     <div class="container-fluid">
         <!-- Toggle Button. Only visible on mobile devices -->
         <div class="navbar-header">
@@ -71,15 +71,11 @@
 <div class="content container" id="home-div">
     <h1>Jester 5.0</h1>
     <div class="row tagline">
-        <div class="col-md-12 text-center">
-            Jokes For <span class="italic">Your</span>Sense of Humor
-        </div>
+        Is there truth behind all humor, or is it the other way around?<br/><br/>
+
+        Jester uses a collaborative filtering algorithm called Eigentaste to recommend jokes to you based on your sense of humor.
     </div>
-    <div class="disclaimer">
-        Note: Some jokes may be considered offensive. If you are
-        offended by mild ethnic, sexist or religious jokes, please
-        don't continue. Thank You.
-    </div>
+
     <div class="row">
         <div class="button-sub-container">
             <!--<a href="jokes.html">-->
@@ -90,13 +86,21 @@
         </div>
     </div>
 
-    <footer class="text-center">
+    <div class="row text-center homepage-links">
+        <a href="about.html">About Jester</a> &nbsp; &nbsp;
+        <a href="#" onclick="showRegister($event);">Join Our Mailing List</a>
+    </div>
+
+    <div class="text-center">
+        Note: Some jokes may be considered offensive. If you are offended by mild ethnic, sexist or religious jokes, please don't continue.</br></br>
+
         Jester is a project by the UC Berkeley Lab for Automation and Science Engineering
-        <img src="img/ucb logo.png" class="ucb_logo"/><br>
+        <img src="img/ucb logo.png" class="ucb_logo"/></br>
         <a href="#">
             <span ng-click="showPrivacyAlert($event)">Privacy Policy</span>
         </a>
-    </footer>
+    </div>
+
 </div>
 <div class="content container" id="joke-div" >
     <h2>Jester 5.0</h2>
