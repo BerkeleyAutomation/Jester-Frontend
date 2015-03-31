@@ -368,3 +368,11 @@ footer {
     max-height: 20px;
     opacity: 0.75;
 }
+
+.about p {
+    line-height: 1.5;
+}
+
+.about h2 {
+    text-align: left;
+}
