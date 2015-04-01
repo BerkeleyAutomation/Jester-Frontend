@@ -5,9 +5,12 @@
 }
 
 /* Navbar buttons should be width: 100% / num_buttons. */
-@media (min-width: 780px) {
+@media (min-width: 0px) {
     .navbar li {
         width: 50%;
+        margin: 0;
+        padding: 0;
+        float: left;
     }
 }
 
@@ -24,9 +27,6 @@
         font-size: 12px;
     }
 
-    .navbar li {
-        width: 100%;
-    }
 }
 
 /* Portrait tablet to landscape and desktop */
