@@ -36,8 +36,10 @@ String.prototype.format = String.prototype.f = function () {
  * @param $mdDialog
  */
 function MailingListController($scope, $http, $mdDialog) {
+
     $scope.cancel = function () {
         $mdDialog.cancel();
+
     };
 
     $scope.submit = function () {
@@ -160,7 +162,7 @@ function getNextJoke($scope, $http) {
 
 
 angular.module('jester', ['ngMaterial'])
-    .controller('navbar-controller', function ($scope, $http, $mdDialog) {
+    .controller('jester-controller', function($scope, $http, $mdDialog) {
         $scope.showMailingList = function (event) {
             $mdDialog.show({
                 controller: MailingListController,
@@ -168,8 +170,7 @@ angular.module('jester', ['ngMaterial'])
                 targetEvent: event
             });
         };
-    })
-    .controller('jester-controller', function($scope, $http, $mdDialog) {
+
         $scope.showPrivacyAlert = function(ev) {
             $mdDialog.show({
                 controller: PrivacyController,
