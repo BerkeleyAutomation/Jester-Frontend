@@ -114,7 +114,6 @@ h2 {
 
 .positive {
     background: #68c10a !important;
-    font-family: 'Roboto', "Helvetica Neue", sans-serif !important;
     font-weight: 500 !important;
 }
 
@@ -149,7 +148,6 @@ h2 {
 }
 
 .angular-modal {
-    font-family: 'Roboto', sans-serif !important;
     font-weight: 300 !important;
     width: 500px;
 }
@@ -288,12 +286,15 @@ div.md-track {
     margin-bottom: 25px !important;
 }
 
+
 .md-dialog-container {
     position: fixed !important;
+    top: 0 !important;
 }
 
 md-backdrop {
     position: fixed !important;
+    top: 0 !important;
 }
 
 .md-thumb {
@@ -339,7 +340,6 @@ md-select {
 }
 
 .tagline {
-    margin-top: 8px;
     font-size: 2.0em;
     max-width: 750px;
     text-align: left;
