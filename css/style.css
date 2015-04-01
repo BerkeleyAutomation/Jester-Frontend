@@ -334,9 +334,9 @@ md-select {
 
 .homepage-links {
     position: relative;
-    top: -15px;
     margin-top: 10px;
-    font-size: 2.0em;
+    font-size: 1.0em;
+    color: black !important;
 }
 
 .tagline {
