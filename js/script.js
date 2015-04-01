@@ -180,9 +180,8 @@ angular.module('jester', ['ngMaterial'])
 
         $scope.begin = function(ev) {
             requestJoke($scope, $http, function() {
-                $("#home-div").fadeOut();
-                $("#joke-div").show();
-                $("nav").show();
+                $("#home-div").hide();
+                $("#joke-div").add("nav").fadeIn();
             });
         };
         // Set default rating
