@@ -15,8 +15,9 @@ HOME_URL = 'index.html';
 var old_rating = 0.0;
 
 var instructions = [
-  "As you rate more jokes, Jester improves its recommendations by learning your sense of humor.",
-  "Before you can receive recommendations, Jester need ratings on two initial jokes.",
+  "First rate two jokes.",
+  undefined,
+  "Now here are jokes based on your ratings so far..."
 ];
 
 String.prototype.format = String.prototype.f = function () {
@@ -131,7 +132,7 @@ function requestJoke($scope, $http, sucess) {
     // Update the view once a response is received
     promise.then(function (payload) {
         $scope.joke = payload.data;
-        $scope.instructions = instructions[$scope.joke.gauge];
+        $scope.instructions = instructions[$scope.joke.num_jokes_rated];
         if (typeof sucess != 'undefined') {
             sucess();
         }
@@ -148,7 +149,7 @@ function logSliderMovement($scope, $http) {
     });
     old_rating = rating;
 }
-
+    
 function getNextJoke($scope, $http) {
     requestJoke($scope, $http, function () {
         $scope.disabled = false;

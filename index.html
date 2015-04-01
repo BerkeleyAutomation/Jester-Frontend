@@ -104,11 +104,11 @@
 </div>
 <div class="content container" id="joke-div" >
     <div class="row">
-        <div class="col-md-12 joke">
+        <div class="col-md-12 joke instructions">
             <p ng-bind="instructions"></p>
         </div>
     </div>
-    <hr style="margin: 0">
+    <hr style="margin: 0" ng-show="instructions">
     <div class="row" style="padding-top:0">
         <div class="col-md-12 joke joke-text" ng-bind-html="joke.joke_text | unsafe"></div>
     </div>

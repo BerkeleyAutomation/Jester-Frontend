@@ -376,3 +376,7 @@ footer {
 .about h2 {
     text-align: left;
 }
+
+.instructions {
+    font-weight: bold;
+}
