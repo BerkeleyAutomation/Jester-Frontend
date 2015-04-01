@@ -7,7 +7,7 @@
 /* Navbar buttons should be width: 100% / num_buttons. */
 @media (min-width: 780px) {
     .navbar li {
-        width: 33%;
+        width: 50%;
     }
 }
 
@@ -51,7 +51,7 @@ body {
 
 .navbar {
     background: #70c11a;
-    border: 1px solid white !important;
+    /*border: 1px solid white !important;*/
     border: none !important;
     /* Prevent Navbar edges from being rounded */
     border-radius: 0 !important;

@@ -46,7 +46,7 @@
 <body ng-app="jester">
 <!-- Register Modal -->
 <!-- Navbar -->
-<nav class="navbar navbar-default" id="navbar" ng-controller="navbar-controller">
+<nav class="navbar navbar-default" id="navbar">
     <div class="container-fluid">
         <!-- Toggle Button. Only visible on mobile devices -->
         <div class="navbar-header">
@@ -63,14 +63,14 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.html" class="item active-item"><span><img class="navbar-img" src="img/home_icon.png"/></span></a></li>
                 <li><a class="item" href="about.html"><span><img class="navbar-img" src="img/about_icon.png"/></span></a></li>
-                <li><a class="item" href="#" ng-click="showMailingList($event)"><span><img class="navbar-img" src="img/email_icon.png"/></span></a>
-                </li>
+
             </ul>
         </div>
 
     </div>
 </nav>
 <!-- Page Content -->
+<div ng-controller="jester-controller">
 <div class="content container about">
 
     <h2>About</h2>
@@ -214,21 +214,28 @@
     <div class="row">
         <div class="col-md-12 text">
             <p>
-                Jay Patel, Viraj Mahesh, Sanjay Krishnan</br>
-                <script>document.write(email('{patel.jay, viraj.mahesh, sanjaykrishnan}'))</script></br>
+                Jay Patel, Viraj Mahesh, Sanjay Krishnan<br />
+                <script>document.write(email('{patel.jay, viraj.mahesh, sanjaykrishnan}'))</script><br />
                 EECS, UC Berkeley
             </p>
 
             <p>
-                <a href="http://goldberg.berkeley.edu">Ken Goldberg</a></br>
-                <script>document.write(email('goldberg'))</script></br>
+                <a href="http://goldberg.berkeley.edu">Ken Goldberg</a><br />
+                <script>document.write(email('goldberg'))</script><br />
                 Professor, IEOR and EECS, UC Berkeley
             </p>
 
 
         </div>
-    </div>    
-</br>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text">
+            <a href="#" ng-click="showMailingList($event);">Join Our Mailing List</a>
+        </div>
+    </div>
+
+<br />
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -240,5 +247,9 @@
 <script src="bower_components/hammerjs/hammer.min.js"></script>
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 <script src="js/script.js"></script>
+
+</div>
+</div>
+
 </body>
 </html>

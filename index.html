@@ -52,7 +52,7 @@
 <body ng-app="jester">
 <!-- Register Modal -->
 <!-- Navbar -->
-<nav class="navbar navbar-default" id="navbar" ng-controller="navbar-controller" style="display:none">
+<nav class="navbar navbar-default" id="navbar" style="display:none">
     <div class="container-fluid">
         <!-- Toggle Button. Only visible on mobile devices -->
         <div class="navbar-header">
@@ -69,8 +69,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.html" class="item active-item"><span><img class="navbar-img" src="img/home_icon.png"/></span></a></li>
                 <li><a class="item" href="about.html"><span><img class="navbar-img" src="img/about_icon.png"/></span></a></li>
-                <li><a class="item" href="#" ng-click="showMailingList($event)"><span><img class="navbar-img" src="img/email_icon.png"/></span></a>
-                </li>
+
             </ul>
         </div>
 
@@ -96,13 +95,13 @@
         </div>
     </div>
 
-    <div class="row text-center homepage-links" ng-controller="navbar-controller">
+    <div class="row text-center homepage-links">
         <a href="about.html">About Jester</a> &nbsp; &nbsp;
         <a href="#" ng-click="showMailingList($event);">Join Our Mailing List</a>
     </div>
 
     <div class="text-center" style="padding-bottom: 30px">
-        Note: Some jokes may be considered offensive. If you are offended by mild ethnic, sexist or religious jokes, please don't continue.</br></br>
+        Note: Some jokes may be considered offensive. If you are offended by mild ethnic, sexist or religious jokes, please don't continue. Thank You.</br></br>
 
         Jester is a project by the UC Berkeley Lab for Automation and Science Engineering
         <img src="img/ucb logo.png" class="ucb_logo"/></br>
