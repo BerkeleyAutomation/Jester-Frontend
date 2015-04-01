@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.8.3-master-a15347c
+ * v0.8.3-master-7b78071
  */
 goog.provide('ng.material.components.select');
 goog.require('ng.material.components.backdrop');
@@ -23,7 +23,6 @@ goog.require('ng.material.core');
 - [ ] ng-model="foo" ng-model-options="{ trackBy: '$value.id' }" for objects
 - [ ] mdOption with value
 - [ ] Usage with input inside
-- [ ] Usage with md-multiple
 
 ### TODO - POST RC1 ###
 - [ ] Abstract placement logic in $mdSelect service to $mdMenu service
@@ -93,6 +92,12 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
     // If not provided, we automatically make one
     if (!labelEl.length) {
       labelEl = angular.element('<md-select-label><span></span></md-select-label>');
+    } else {
+        if (!labelEl[0].firstElementChild) {
+            var spanWrapper = angular.element('<span>');
+            spanWrapper.append(labelEl.contents());
+            labelEl.append(spanWrapper);
+        }
     }
     labelEl.append('<span class="md-select-icon" aria-hidden="true"></span>');
     labelEl.addClass('md-select-label');
@@ -133,11 +138,10 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
       var ngModel = ctrls[1];
       var labelEl = element.find('md-select-label');
       var customLabel = labelEl.text().length !== 0;
-      var selectContainer, selectScope;
+        var selectContainer, selectScope, selectMenuCtrl;
       createSelect();
 
       var originalRender = ngModel.$render;
-
       ngModel.$render = function() {
         originalRender();
         syncLabelText();
@@ -164,6 +168,32 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
         }
       }
 
+        var deregisterWatcher;
+        attr.$observe('ngMultiple', function (val) {
+            if (deregisterWatcher) deregisterWatcher();
+            var parser = $parse(val);
+            deregisterWatcher = scope.$watch(function () {
+                return parser(scope);
+            }, function (multiple, prevVal) {
+                if (multiple === undefined && prevVal === undefined) return; // assume compiler did a good job
+                if (multiple) {
+                    element.attr('multiple', 'multiple');
+                } else {
+                    element.removeAttr('multiple');
+                }
+                if (selectContainer) {
+                    selectMenuCtrl.setMultiple(multiple);
+                    originalRender = ngModel.$render;
+                    ngModel.$render = function () {
+                        originalRender();
+                        syncLabelText();
+                    };
+                    selectMenuCtrl.refreshViewValue();
+                    ngModel.$render();
+                }
+            });
+        });
+
       attr.$observe('disabled', function(disabled) {
         if (typeof disabled == "string") {
           disabled = true;
@@ -176,17 +206,17 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
         if (disabled) {
           element.attr('tabindex', -1);
           element.off('click', openSelect);
-          element.off('keydown', openOnKeypress);
+            element.off('keydown', handleKeypress);
         } else {
           element.attr('tabindex', 0);
           element.on('click', openSelect);
-          element.on('keydown', openOnKeypress);
+            element.on('keydown', handleKeypress);
         }
       });
       if (!attr.disabled && !attr.ngDisabled) {
         element.attr('tabindex', 0);
         element.on('click', openSelect);
-        element.on('keydown', openOnKeypress);
+          element.on('keydown', handleKeypress);
       }
 
       element.attr({
@@ -216,14 +246,28 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $interpolate, $compile,
         selectEl.data('$mdSelectController', mdSelectCtrl);
         selectScope = scope.$new();
         selectContainer = $compile(selectContainer)(selectScope);
+          selectMenuCtrl = selectContainer.find('md-select-menu').controller('mdSelectMenu');
       }
 
-      function openOnKeypress(e) {
+        function handleKeypress(e) {
         var allowedCodes = [32, 13, 38, 40];
         if (allowedCodes.indexOf(e.keyCode) != -1 ) {
           // prevent page scrolling on interaction
           e.preventDefault();
           openSelect(e);
+        } else {
+            if (e.keyCode <= 90 && e.keyCode >= 31) {
+                e.preventDefault();
+                var node = selectMenuCtrl.optNodeForKeyboardSearch(e);
+                if (!node) return;
+                var optionCtrl = angular.element(node).controller('mdOption');
+                if (!selectMenuCtrl.isMultiple) {
+                    selectMenuCtrl.deselect(Object.keys(selectMenuCtrl.selected)[0]);
+                }
+                selectMenuCtrl.select(optionCtrl.hashKey, optionCtrl.value);
+                selectMenuCtrl.refreshViewValue();
+                ngModel.$render();
+            }
         }
       }
 
@@ -321,6 +365,60 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
     // and values matching every option's controller.
     self.options = {};
 
+      var deregisterCollectionWatch;
+      self.setMultiple = function (isMultiple) {
+          var ngModel = self.ngModel;
+          self.isMultiple = isMultiple;
+          if (deregisterCollectionWatch) deregisterCollectionWatch();
+
+          if (self.isMultiple) {
+              ngModel.$validators['md-multiple'] = validateArray;
+              ngModel.$render = renderMultiple;
+
+              // watchCollection on the model because by default ngModel only watches the model's
+              // reference. This allowed the developer to also push and pop from their array.
+              $scope.$watchCollection($attrs.ngModel, function (value) {
+                  if (validateArray(value)) renderMultiple(value);
+              });
+          } else {
+              delete ngModel.$validators['md-multiple'];
+              ngModel.$render = renderSingular;
+          }
+
+          function validateArray(modelValue, viewValue) {
+              // If a value is truthy but not an array, reject it.
+              // If value is undefined/falsy, accept that it's an empty array.
+              return angular.isArray(modelValue || viewValue || []);
+          }
+      };
+
+      var searchStr = '';
+      var clearSearchTimeout, optNodes, optText;
+      var CLEAR_SEARCH_AFTER = 300;
+      self.optNodeForKeyboardSearch = function (e) {
+          clearSearchTimeout && clearTimeout(clearSearchTimeout);
+          clearSearchTimeout = setTimeout(function () {
+              clearSearchTimeout = undefined;
+              searchStr = '';
+              optText = undefined;
+              optNodes = undefined;
+          }, CLEAR_SEARCH_AFTER);
+          searchStr += String.fromCharCode(e.keyCode);
+          var search = new RegExp('^' + searchStr, 'i');
+          if (!optNodes) {
+              optNodes = $element.find('md-option');
+              optText = new Array(optNodes.length);
+              angular.forEach(optNodes, function (el, i) {
+                  optText[i] = el.textContent;
+              });
+          }
+          for (var i = 0; i < optText.length; ++i) {
+              if (search.test(optText[i])) {
+                  return optNodes[i];
+              }
+          }
+      };
+
 
     self.init = function(ngModel) {
       self.ngModel = ngModel;
@@ -344,25 +442,7 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
           return value;
         };
       }
-
-      if (self.isMultiple) {
-        ngModel.$validators['md-multiple'] = validateArray;
-        ngModel.$render = renderMultiple;
-
-        // watchCollection on the model because by default ngModel only watches the model's
-        // reference. This allowed the developer to also push and pop from their array.
-        $scope.$watchCollection($attrs.ngModel, function(value) {
-          if (validateArray(value)) renderMultiple(value);
-        });
-      } else {
-        ngModel.$render = renderSingular;
-      }
-
-      function validateArray(modelValue, viewValue) {
-        // If a value is truthy but not an array, reject it.
-        // If value is undefined/falsy, accept that it's an empty array.
-        return angular.isArray(modelValue || viewValue || []);
-      }
+        self.setMultiple(self.isMultiple);
     };
 
     self.selectedLabels = function() {
@@ -679,8 +759,14 @@ function SelectProvider($$interimElementProvider) {
           switch (ev.keyCode) {
             case $mdConstant.KEY_CODE.UP_ARROW: return focusPrevOption();
             case $mdConstant.KEY_CODE.DOWN_ARROW: return focusNextOption();
+              default:
+                  if (ev.keyCode >= 31 && ev.keyCode <= 90) {
+                      var optNode = opts.selectEl.controller('mdSelectMenu').optNodeForKeyboardSearch(ev);
+                      optNode && optNode.focus();
+                  }
           }
         });
+
 
         function focusOption(direction) {
           var optionsArray = nodesToArray(optionNodes);
@@ -703,19 +789,20 @@ function SelectProvider($$interimElementProvider) {
           focusOption('prev');
         }
 
-        if (!selectCtrl.isMultiple) {
-          opts.selectEl.on('click', closeMenu);
-          opts.selectEl.on('keydown', function(e) {
-            if (e.keyCode == 32 || e.keyCode == 13) {
-              closeMenu();
-            }
+          opts.selectEl.on('click', checkCloseMenu);
+          opts.selectEl.on('keydown', function (e) {
+              if (e.keyCode == 32 || e.keyCode == 13) {
+                  checkCloseMenu();
+              }
           });
-        }
-        function closeMenu() {
-          opts.restoreFocus = true;
-          scope.$evalAsync(function() {
-            $mdSelect.hide(selectCtrl.ngModel.$viewValue);
-          });
+
+          function checkCloseMenu() {
+              if (!selectCtrl.isMultiple) {
+                  opts.restoreFocus = true;
+                  scope.$evalAsync(function () {
+                      $mdSelect.hide(selectCtrl.ngModel.$viewValue);
+                  });
+              }
         }
       }
 

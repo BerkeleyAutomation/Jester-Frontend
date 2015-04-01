@@ -38,7 +38,7 @@ String.prototype.format = String.prototype.f = function () {
 function MailingListController($scope, $http, $mdDialog) {
 
     $scope.cancel = function () {
-        $mdDialog.cancel();
+        $mdDialog.hide();
 
     };
 
