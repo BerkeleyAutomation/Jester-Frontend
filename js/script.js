@@ -171,9 +171,8 @@ angular.module('jester', ['ngMaterial'])
             });
         };
 
-        $scope.loadAboutPage = function (event) {
-            console.log('here');
-            window.location.href = 'http://eigentaste.berkeley.edu/about.html';
+        $scope.loadPage = function ($event) {
+            window.location.href = $($event.currentTarget).attr('href');
         };
 
         $scope.showPrivacyAlert = function(ev) {
