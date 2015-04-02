@@ -118,7 +118,9 @@ $(document).ready(function () {
     });
 
     $('a').click(function () {
-        window.location.href = $(this).attr('href');
+        var url = $(this).attr('href');
+        if (typeof url != 'undefined')
+            window.location.href = url;
     });
 });
 
