@@ -171,6 +171,11 @@ angular.module('jester', ['ngMaterial'])
             });
         };
 
+        $scope.loadAboutPage = function (event) {
+            console.log('here');
+            window.location.href = 'http://eigentaste.berkeley.edu/about.html';
+        };
+
         $scope.showPrivacyAlert = function(ev) {
             $mdDialog.show({
                 controller: PrivacyController,
@@ -206,18 +211,6 @@ angular.module('jester', ['ngMaterial'])
             });
             // Request a new joke once a response is received
             promise.then(function() {
-                /* if ($scope.joke.joke_id == 54) {
-                     $mdDialog.show({
-                        controller: BeginRecommending,
-                        templateUrl: 'begin_recommending.tmpl.html',
-                        locals: {
-                            outer_scope: $scope
-                        }
-                    });
-                }
-                else {
-                    getNextJoke($scope, $http);
-                } */
                 getNextJoke($scope, $http);
             });
         };
