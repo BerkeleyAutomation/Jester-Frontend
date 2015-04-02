@@ -116,6 +116,10 @@ $(document).ready(function () {
     item.mouseleave(function() {
         $(this).children('.mouseover').css('background', 'rgba(0, 0, 0, 0.0)');
     });
+
+    $('a').click(function () {
+        window.location.href = $(this).attr('href');
+    });
 });
 
 
@@ -169,10 +173,6 @@ angular.module('jester', ['ngMaterial'])
                 templateUrl: 'mailing_list.tmpl.html',
                 targetEvent: event
             });
-        };
-
-        $scope.loadPage = function ($event) {
-            window.location.href = $($event.currentTarget).attr('href');
         };
 
         $scope.showPrivacyAlert = function(ev) {
