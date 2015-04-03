@@ -384,3 +384,21 @@ footer {
 .instructions {
     font-weight: bold;
 }
+
+.pink-bgr {
+    background: #dd1c77 !important;
+    border-color: #dd1c77 !important;
+}
+
+.recommend_notify {
+    color: white !important;
+    font-size: 1.4em;
+}
+
+.large-text {
+    font-size: 1.2em;
+}
+
+md-backdrop {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+}

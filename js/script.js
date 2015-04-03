@@ -3,7 +3,7 @@
  */
 
 
-BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
+BASE_URL = 'http://127.0.0.1:8000/jester/';//'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
@@ -197,7 +197,7 @@ angular.module('jester', ['ngMaterial'])
         $scope.disabled = false;
 
         // Submit a rating and request the next joke
-        $scope.submitRating = function () {
+        $scope.submitRating = function ($event) {
             // Submit the rating only if button is not disabled
             if ($scope.disabled) {
                 return;
@@ -210,9 +210,23 @@ angular.module('jester', ['ngMaterial'])
                 type: 'GET',
                 withCredentials: true
             });
-            // Request a new joke once a response is received
+
+            // Display the blurb
+            if ($scope.joke.num_jokes_rated == 1) {
+                $mdDialog.show({
+                    controller: BeginRecommending,
+                    templateUrl: 'begin_recommending.tmpl.html',
+                    targetEvent: $event,
+                    locals: {
+                        outer_scope: $scope
+                    }
+                });
+            }
+
             promise.then(function() {
-                getNextJoke($scope, $http);
+                if ($scope.joke.num_jokes_rated != 1) {
+                    getNextJoke($scope, $http);
+                }
             });
         };
         $scope.showLogoutConfirm = function (event) {
