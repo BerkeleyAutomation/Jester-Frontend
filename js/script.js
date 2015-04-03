@@ -3,7 +3,7 @@
  */
 
 
-BASE_URL = 'http://127.0.0.1:8000/jester/';//'http://automation.berkeley.edu/jester_backend/jester/';
+BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
