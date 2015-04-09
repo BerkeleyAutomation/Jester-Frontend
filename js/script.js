@@ -3,7 +3,7 @@
  */
 
 
-BASE_URL = 'http://automation.berkeley.edu/jester_backend/jester/';
+BASE_URL = 'http://127.0.0.1:8000/jester/';//'http://automation.berkeley.edu/jester_backend/jester/';
 REQUEST_URL = BASE_URL + 'request_joke/';
 RATE_URL = BASE_URL + 'rate_joke/{0}/{1}/';
 LOGOUT_URL = BASE_URL + 'logout/';
@@ -17,7 +17,7 @@ var old_rating = 0.0;
 var instructions = [
   "First rate two jokes.",
   undefined,
-  "Now here are jokes based on your ratings so far..."
+    "Jester will now recommend jokes based on your ratings so far..."
 ];
 
 String.prototype.format = String.prototype.f = function () {
@@ -141,6 +141,12 @@ function requestJoke($scope, $http, sucess) {
     promise.then(function (payload) {
         $scope.joke = payload.data;
         $scope.instructions = instructions[$scope.joke.num_jokes_rated];
+        if (typeof $scope.instructions == 'undefined') {
+            $('#instructions').hide();
+        }
+        else {
+            $('#instructions').show();
+        }
         if (typeof sucess != 'undefined') {
             sucess();
         }
@@ -211,22 +217,8 @@ angular.module('jester', ['ngMaterial'])
                 withCredentials: true
             });
 
-            // Display the blurb
-            if ($scope.joke.num_jokes_rated == 1) {
-                $mdDialog.show({
-                    controller: BeginRecommending,
-                    templateUrl: 'begin_recommending.tmpl.html',
-                    targetEvent: $event,
-                    locals: {
-                        outer_scope: $scope
-                    }
-                });
-            }
-
             promise.then(function() {
-                if ($scope.joke.num_jokes_rated != 1) {
-                    getNextJoke($scope, $http);
-                }
+                getNextJoke($scope, $http);
             });
         };
         $scope.showLogoutConfirm = function (event) {

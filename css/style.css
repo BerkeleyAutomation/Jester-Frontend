@@ -385,18 +385,21 @@ footer {
     font-weight: bold;
 }
 
-.pink-bgr {
+#instructions {
     background: #dd1c77 !important;
     border-color: #dd1c77 !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
 }
 
 .recommend_notify {
     color: white !important;
-    font-size: 1.4em;
+    font-size: 2.0em;
 }
 
 .large-text {
-    font-size: 1.2em;
+    font-size: 1.0em !important;
 }
 
 md-backdrop {
