@@ -67,6 +67,9 @@ angular.module('data_visualization', ['ngMaterial'])
                 $scope.bins = data.stats.bins;
                 $scope.bin_width = data.stats.bin_width;
                 $scope.num_ratings = data.stats.num_ratings;
+                $scope.mean_rating = data.stats.mean_rating;
+                $scope.median_rating = data.stats.median_rating;
+
                 $scope.$apply();
                 $('#ratings_histogram').highcharts({
                     chart: {
@@ -112,4 +115,7 @@ angular.module('data_visualization', ['ngMaterial'])
             });
         };
         $scope.get_histogram();
+    })
+    .controller('num_ratings_histogram_controller', function ($scope) {
+
     });

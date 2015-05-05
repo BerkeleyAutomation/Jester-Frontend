@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="bower_components/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,700' rel='stylesheet' type='text/css'>
@@ -36,34 +37,41 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
 
     <!-- Custom style sheet -->
+    <link rel="stylesheet" href="data_visualization.css">
+
 
 </head>
 <body ng-app="data_visualization">
 <div class="content container">
     <div class="row"><h1>Jester Visualizations</h1></div>
-    <h3>Ratings Histogram</h3>
 
-    <p>A histogram of all ratings submitted to Jester 5.0 <br/>Ratings are continuous and real valued on
-        the interval [-10, 10].</p>
+    <div ng-controller="ratings_histogram_controller" class="visualization">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Ratings Histogram</h3>
 
-    <div ng-controller="ratings_histogram_controller">
+                <p>A histogram of all ratings submitted to Jester 5.0 <br/>Ratings are continuous and real valued on
+                    the interval [-10, 10].</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-8">
                 <div id="ratings_histogram" style="width: 600px; height: 400px; margin: 0 auto"></div>
             </div>
             <div class="col-md-4" id="options">
-                <h4>Stats</h4>
+                <h4>Statistics</h4>
 
                 <p>Bins: {{bins}}</p>
-
                 <p>Bin Width: {{bin_width}}</p>
-
                 <p># of Ratings: {{num_ratings}}</p>
+
+                <p>Mean Rating: {{mean_rating | number:2}}</p>
+
+                <p>Median Rating: {{median_rating}}</p>
                 <h4>Options</h4>
-                <md-checkbox class="md-hue-3" ng-model="filter_null" ng-change="get_histogram()">
+                <md-checkbox class="md-hue-3" ng-model="filter_null">
                     Filter null ratings
                 </md-checkbox>
                 <p>Date Range:</p>
@@ -75,9 +83,46 @@
                     <input type="text" class="input-sm form-control ratings_hist_actual" id="ratings_hist_end_date"
                            name="end"/>
                 </div>
+                <md-button class="md-raised" ng-click="get_histogram()" style="margin-top: 25px">Update</md-button>
             </div>
         </div>
     </div>
+
+    <div ng-controller="num_ratings_histogram_controller" class="visualization">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Number of Ratings/User Histogram</h3>
+
+                <p>A histogram of all ratings submitted to Jester 5.0 <br/>Ratings are continuous and real valued on
+                    the interval [-10, 10].</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div id="num_ratings_histogram" style="width: 600px; height: 400px; margin: 0 auto"></div>
+            </div>
+            <div class="col-md-4" id="options">
+                <h4>Statistics</h4>
+
+                <p>Bins: {{bins}}</p>
+
+                <p>Bin Width: {{bin_width}}</p>
+
+                <p># of Ratings: {{num_ratings}}</p>
+
+                <p>Mean Rating: {{mean_rating | number:2}}</p>
+
+                <p>Median Rating: {{median_rating}}</p>
+                <h4>Options</h4>
+                <md-checkbox class="md-hue-3" ng-model="filter_null">
+                    Filter null ratings
+                </md-checkbox>
+                <p>Date Range:</p>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
