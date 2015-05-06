@@ -3,7 +3,7 @@
  */
 
 //BASE_URL = 'http://127.0.0.1:8000/data_visualization/';
-BASE_URL = 'http://automation.berkeley.edu/jester_backend/data_visualization';
+BASE_URL = 'http://automation.berkeley.edu/jester_backend/data_visualization/';
 
 String.prototype.format = String.prototype.f = function () {
     var s = this,
