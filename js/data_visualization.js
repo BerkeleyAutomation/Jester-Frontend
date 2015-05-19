@@ -14,10 +14,6 @@ String.prototype.format = String.prototype.f = function () {
     return s;
 };
 
-$(document).ready(function () {
-
-});
-
 angular.module('data_visualization', ['ngMaterial'])
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
@@ -55,6 +51,7 @@ angular.module('data_visualization', ['ngMaterial'])
                 $scope.start_date.datepicker('update', e.date);
             }
         });
+
         $scope.start_date.datepicker('update', '04/01/2015');
         $scope.end_date.datepicker('update', (new Date()).toDateString());
         $scope.get_histogram = function () {
@@ -91,13 +88,13 @@ angular.module('data_visualization', ['ngMaterial'])
                         min: data.yAxis.min,
                         max: data.yAxis.max,
                         title: {
-                            text: 'Number of Ratings'
+                            text: 'Number of ratings'
                         }
                     },
                     tooltip: {
                         formatter: function () {
-                            var range = [this.x - data.stats.bin_width / 2, this.x + data.stats.bin_width / 2];
-                            return '<b>Range</b>: [{0}) <br /> <b>Ratings</b>: {1}'.format(range, this.y);
+                            var range = [$.number(this.x - data.stats.bin_width / 2), $.number(this.x + data.stats.bin_width / 2, 2)];
+                            return '<b>Range</b>: [{0}) <br /> <b># of ratings</b>: {1}'.format(range, this.y);
                         }
                     },
                     plotOptions: {
@@ -118,5 +115,126 @@ angular.module('data_visualization', ['ngMaterial'])
         $scope.get_histogram();
     })
     .controller('num_ratings_histogram_controller', function ($scope) {
+        $scope.filter_null = false;
 
+        $scope.get_histogram = function () {
+
+            data = {
+                filter_null: $scope.filter_null
+            };
+
+            $.getJSON(BASE_URL + 'num_ratings_histogram', data, function (data) {
+                // Request succeeded
+                $scope.bins = data.stats.bins;
+                $scope.bin_width = data.stats.bin_width;
+                $scope.num_ratings = data.stats.num_ratings;
+                $scope.mean_num_ratings = data.stats.mean_num_ratings;
+                $scope.median_rating = data.stats.median_rating;
+
+                $scope.$apply();
+                $('#num_ratings_histogram').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        min: data.xAxis.min,
+                        max: data.xAxis.max,
+                        tickPositions: data.xAxis.tickPositions
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    yAxis: {
+                        min: data.yAxis.min,
+                        max: data.yAxis.max,
+                        title: {
+                            text: 'Number of users'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            var range = [$.number(this.x - data.stats.bin_width / 2, 2), $.number(this.x + data.stats.bin_width / 2, 2)];
+                            return '<b>Range</b>: [{0}) <br /> <b># of users</b>: {1}'.format(range, this.y);
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.0,
+                            borderWidth: 0.1,
+                            groupPadding: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Number of ratings',
+                        data: data.heights,
+                        color: '#0277bd'
+                    }]
+                });
+            });
+        };
+        $scope.get_histogram();
+    })
+    .controller('num_ratings_over_time', function ($scope) {
+        $scope.filter_null = false;
+        $scope.start_date = $('#num_ratings_hist_start_date');
+        $scope.end_date = $('#num_ratings_hist_end_date');
+
+        $scope.get_histogram = function () {
+
+            data = {
+                filter_null: $scope.filter_null
+            };
+
+            $.getJSON(BASE_URL + 'num_ratings_over_time', data, function (data) {
+                // Request succeeded
+                //$scope.bins = data.stats.bins;
+                //$scope.bin_width = data.stats.bin_width;
+                //$scope.num_ratings = data.stats.num_ratings;
+                //$scope.mean_num_ratings = data.stats.mean_num_ratings;
+                //$scope.median_rating = data.stats.median_rating;
+
+                console.log('here');
+
+                $scope.$apply();
+                $('#num_ratings_over_time').highcharts({
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: data.xAxis.categories
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    yAxis: {
+                        min: data.yAxis.min,
+                        max: data.yAxis.max,
+                        title: {
+                            text: 'Number of users'
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>Date</b>: {0} <br /> <b>Ratings</b>: {1}'.format(this.x, this.y);
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.0,
+                            borderWidth: 0.1,
+                            groupPadding: 0
+                        }
+                    },
+                    series: [{
+                        name: 'Number of ratings',
+                        data: data.heights,
+                        color: '#0277bd'
+                    }]
+                });
+            });
+        };
+        $scope.get_histogram();
     });

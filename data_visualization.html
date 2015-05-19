@@ -25,6 +25,7 @@
     <script src="bower_components/angular-material/angular-material.min.js"></script>
     <script src="bower_components/highcharts-release/highcharts.js"></script>
     <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="bower_components/jquery-number/jquery.number.min.js"></script>
     <script src="js/data_visualization.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,7 +40,7 @@
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
     <!-- Custom style sheet -->
-    <link rel="stylesheet" href="data_visualization.css">
+    <link rel="stylesheet" href="css/data_visualization.css">
 
 
 </head>
@@ -64,15 +65,16 @@
                 <h4>Statistics</h4>
 
                 <p>Bins: {{bins}}</p>
-                <p>Bin Width: {{bin_width}}</p>
+
+                <p>Bin Width: {{bin_width | number:2}}</p>
                 <p># of Ratings: {{num_ratings}}</p>
 
-                <p>Mean Rating: {{mean_rating | number:2}}</p>
+                <p>Mean rating: {{mean_rating | number:2}}</p>
 
-                <p>Median Rating: {{median_rating}}</p>
+                <p>Median rating: {{median_rating | number:2}}</p>
                 <h4>Options</h4>
                 <md-checkbox class="md-hue-3" ng-model="filter_null">
-                    Filter null ratings
+                    Filter 0.0 ratings
                 </md-checkbox>
                 <p>Date Range:</p>
 
@@ -105,19 +107,48 @@
 
                 <p>Bins: {{bins}}</p>
 
-                <p>Bin Width: {{bin_width}}</p>
+                <p>Bin Width: {{bin_width | number:2}}</p>
 
                 <p># of Ratings: {{num_ratings}}</p>
 
-                <p>Mean Rating: {{mean_rating | number:2}}</p>
+                <p>Mean # of ratings/users: {{mean_num_ratings | number:2}}</p>
 
-                <p>Median Rating: {{median_rating}}</p>
+                <p>Median # of ratings/users: {{median_rating}}</p>
                 <h4>Options</h4>
                 <md-checkbox class="md-hue-3" ng-model="filter_null">
-                    Filter null ratings
+                    Filter users that have rated 0 jokes
                 </md-checkbox>
-                <p>Date Range:</p>
+                <md-button class="md-raised" ng-click="get_histogram()" style="margin-top: 25px">Update</md-button>
+            </div>
+        </div>
+    </div>
 
+    <div ng-controller="num_ratings_over_time" class="visualization">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Number of Ratings Over Time</h3>
+
+                <p>Displays the number of ratings received over a certain period of time.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div id="num_ratings_over_time" style="width: 600px; height: 400px; margin: 0 auto"></div>
+            </div>
+            <div class="col-md-4" id="options">
+                <h4>Statistics</h4>
+
+                <p># of Ratings: {{num_ratings}}</p>
+
+                <p>Mean # of ratings: {{mean_num_ratings | number:2}}</p>
+
+                <p>Median # of ratings: {{median_rating}}</p>
+
+                <h4>Options</h4>
+                <md-checkbox class="md-hue-3" ng-model="filter_null">
+                    Filter users that have rated 0 jokes
+                </md-checkbox>
+                <md-button class="md-raised" ng-click="get_histogram()" style="margin-top: 25px">Update</md-button>
             </div>
         </div>
     </div>
