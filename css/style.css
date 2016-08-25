@@ -386,6 +386,8 @@ footer {
 }
 
 #instructions {
+	font-size: 2.5em;
+    color: white;
     background: #dd1c77 !important;
     border-color: #dd1c77 !important;
     padding-top: 10px;
